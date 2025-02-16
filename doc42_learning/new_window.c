@@ -7,14 +7,23 @@
 int main()
 {
     void    *mlx_ptr;
-    void    *mlx_window;
+    void    *window1;
+    void    *window2;
 
     mlx_ptr = mlx_init();
     if (!mlx_ptr)
         return (1);
-    mlx_window = mlx_new_window(mlx_ptr, size_x, size_y, "./so______long");
-    if (!mlx_window)
+    window1 = mlx_new_window(mlx_ptr, size_x, size_y, "window 1");
+    if (!window1)
     {
+        mlx_destroy_display(mlx_ptr);
+        free(mlx_ptr);
+        return (1);
+    }
+    window2 = mlx_new_window(mlx_ptr, size_x, size_y, "window 2");
+    if (!window2)
+    {
+        mlx_destroy_window(mlx_ptr, window1);
         mlx_destroy_display(mlx_ptr);
         free(mlx_ptr);
         return (1);
@@ -22,7 +31,8 @@ int main()
     mlx_loop(mlx_ptr);
     // EVENT LOOP
     // without this loop the process will stop immediately
-    mlx_destroy_window(mlx_ptr, mlx_window);
-    mlx_destroy_display(mlx_ptr);
-    free(mlx_ptr);
+    // mlx_destroy_window(mlx_ptr, window1);
+    // mlx_destroy_display(mlx_ptr);
+    // free(mlx_ptr);
+    return (0);
 }
