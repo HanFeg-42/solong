@@ -15,8 +15,8 @@
 int main(int ac, char **av)
 {
 	t_solong    var;
-	if (ac != 2)
-		throw_error("Error\nunvalid arguments!\n");
+	if (ac != 2 || check_map_ext(av[1]))
+		throw_error("Error\nunvalid argument!\n");
 	if ((var.err = is_map_valid(av[1])))
 		throw_error(var.err);
 	print_map(av[1]);
