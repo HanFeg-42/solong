@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 00:37:57 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/07 10:08:12 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/18 23:05:25 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,5 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
+
+// int ft_strchrindx()
