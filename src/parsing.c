@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/19 01:25:25 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/19 02:17:28 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,10 @@ void	check_map_ext(char *map)
 		throw_error("unvalid map extension!\n");
 }
 
-// char *is_rectangular(int fd)
-// {
-// 	char *line;
-// 	int line_size;
-
-// 	line = get_next_line(fd, 0);
-// 	line_size = ft_strlen(line);
-// 	while (line)
-// 	{
-// 		free(line);
-// 		line = get_next_line(fd, 0);
-// 		if (line && line_size == ft_strlen(line))
-// 			break;
-// 	}
-// 	return (NULL);
-// }
-
 int	recursion(char **map_data, int x, int y, int *count)
 {
 	if (map_data[y][x] == '1' || !(*count))
 		return (false);
-	// printf("salam\n");
 	if (map_data[y][x] == 'E' || map_data[y][x] == 'C')
 		(*count)--;
 	map_data[y][x] = '1';
@@ -68,14 +50,9 @@ char	**get_map(int fd, t_map_data *data)
 	int C = 0;
 	int line_size;
 	data->height = 0;
-	// int elmt_counter = 0;
 
 	line = get_next_line(fd, 0);
 	line_size = ft_strlen(line);
-	// if (ft_strchr(line, '\n'))
-	// 	printf("rah kayna new line\n");
-	// else
-	// 	printf("rah makaynach new line\n");
 	is_line_wall(line);
 	map = ft_strdup("");
 	while (line)
@@ -91,7 +68,6 @@ char	**get_map(int fd, t_map_data *data)
 		free(line);
 		line = get_next_line(fd, 0);
 	}
-	// get_next_line(fd, 1);
 	if (!(P == 1 && E == 1 && C > 0))
 		(free(map), throw_error("unvalid map: p | e | c chi wahed fihum makaynch\n"));
 	map_arr = ft_split(map, '\n');
@@ -153,17 +129,9 @@ void	is_line_valid(char *line, int size)
 	}
 	else
 	{
-		// if (ft_strchr(line, '\n'))
-		// 	printf("rah kayna new line\n");
-		// else
-		// 	printf("rah makaynach new line\n");
-		// printf("%s\n", line);
 		if (line[0] != '1' || line[size - 2] != '1' || size - 1 != (int)ft_strlen(line))
 			throw_error("unvalid map 3ndk mochkil\n");
 	}
-	// if (line[0] != '1' || line[size - 1] != '\n'
-	// 	|| line[size - 2] != '1' || size != ft_strlen(line))
-	// 	throw_error("unvalid map\n");
 	while (line[i + 1])
 	{
 		if (!ft_strchr(emoji, line[i]))
@@ -172,7 +140,7 @@ void	is_line_valid(char *line, int size)
 	}
 }
 
-char	*is_map_valid(char *map)
+char	*is_map_valid(char *map, t_solong *var)
 {
 	t_map_data data;
 	int fd;
@@ -182,9 +150,43 @@ char	*is_map_valid(char *map)
 	if (fd < 0)
 		perror_exit("failed to open");
 	data.m = get_map(fd, &data);
+	var->map = copy_map(data);
 	if (!recursion(data.m, data.x, data.y, &data.count))
-		return (clean_up(data.m), "unvalid path\n");
+		return (print_map(data.m), clean_up(data.m), "unvalid path\n");
 	return (clean_up(data.m), NULL);
+}
+
+char **copy_map(t_map_data data)
+{
+	char	**ret;
+	int		i;
+
+	// printf("%d\n", data.height);
+	// print_map(data.m);
+	ret = malloc(sizeof(char *) * (data.height + 1));
+	if (!ret)
+		return (NULL);
+	i = 0;
+	while (data.m[i])
+	{
+		ret[i] = ft_strdup(data.m[i]);
+		i++;
+	}
+	ret[i] = NULL;
+		// exit(0);
+	return (ret);
+}
+
+void print_map(char **map)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
+	}
 }
 
 // .ber   the name of file should be larger than 4 caract...

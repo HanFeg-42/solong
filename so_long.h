@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/19 01:23:16 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/19 01:57:12 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 //struct
 typedef struct s_solong
 {
+	char **map;
 	char *err;
 }	t_solong;
 
@@ -36,7 +37,7 @@ typedef struct s_map_data
 
 
 //parsing
-char	*is_map_valid(char *map);
+char	*is_map_valid(char *map, t_solong *var);
 void	check_map_ext(char *map);
 void	throw_error(char *err);
 void	perror_exit(char *err);
@@ -47,7 +48,8 @@ char	**get_map(int fd, t_map_data *data);
 void	check_element(char *line, char c, int *character, t_map_data *data);
 void	is_line_wall(char *line);
 void	is_line_valid(char *line, int size);
-char	*is_map_valid(char *map);
-
+// char	*is_map_valid(char *map);
+void print_map(char **map);
+char **copy_map(t_map_data data);
 
 #endif
