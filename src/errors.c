@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 09:30:14 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/18 21:41:45 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/18 23:56:41 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,17 @@ void	perror_exit(char *err)
 {
 	perror(err);
 	exit(EXIT_FAILURE);
+}
+
+void	clean_up(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

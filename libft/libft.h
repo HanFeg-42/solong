@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 17:35:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2024/11/10 23:06:01 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/18 23:38:03 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char				*ft_strnstr(const char *str, const char *to_find, size_t n);
 char				*ft_strrchr(const char *str, int c);
 int					ft_tolower(int ch);
 int					ft_toupper(int ch);
+int					ft_strchr_index(const char *s, int c);
 
 // SECOND PART
 char				*ft_substr(char const *s, unsigned int start, size_t len);
