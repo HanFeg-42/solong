@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/19 01:57:12 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/19 14:49:31 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define SO_LONG_H
 
 # include "libft/libft.h"
+// # include "minilibx-linux/mlx.h"
+# include <mlx.h>
+# include <X11/keysym.h>
 # include <stdbool.h>
 
 # define BUFFER_SIZE 1000000

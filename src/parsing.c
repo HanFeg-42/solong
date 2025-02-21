@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/19 02:17:28 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/19 02:19:57 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,8 +161,6 @@ char **copy_map(t_map_data data)
 	char	**ret;
 	int		i;
 
-	// printf("%d\n", data.height);
-	// print_map(data.m);
 	ret = malloc(sizeof(char *) * (data.height + 1));
 	if (!ret)
 		return (NULL);
@@ -173,7 +171,6 @@ char **copy_map(t_map_data data)
 		i++;
 	}
 	ret[i] = NULL;
-		// exit(0);
 	return (ret);
 }
 
