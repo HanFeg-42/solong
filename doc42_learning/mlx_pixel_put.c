@@ -12,7 +12,7 @@ int    key_press(int key, t_mlx_data *data)
         mlx_destroy_window(data->mlx_ptr, data->mlx_win);
         mlx_destroy_display(data->mlx_ptr);
         free(data->mlx_ptr);
-        exit(1);
+        exit(0);
     }
     return (0);
 }
@@ -30,8 +30,8 @@ int close_window(t_mlx_data *data)
     mlx_destroy_window(data->mlx_ptr, data->mlx_win);
     mlx_destroy_display(data->mlx_ptr);
     free(data->mlx_ptr);
-    exit(1);
-    return (0);
+    exit(0);
+    return (1);
 }
 
 int main()

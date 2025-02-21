@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/19 14:49:31 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/21 13:45:05 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ typedef struct s_map_data
 	int y;
 }	t_map_data;
 
-
+typedef struct s_mlx_data
+{
+    void *mlx_ptr;
+    void *mlx_win;
+} t_mlx_data;
 
 //parsing
 char	*is_map_valid(char *map, t_solong *var);
