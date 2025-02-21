@@ -38,13 +38,13 @@ void color_screen(t_mlx_data *data, int color)
         }
         y++;
     }
-    // for (int y = 0; y < 800; ++y)    
+    // for (int y = 0; y < 800; ++y)
     // {
     //     for (int x = 0; x < 800; ++x)
     //     {
     //         my_pixel_put(&data->img,
-    //                     x, 
-    //                     y, 
+    //                     x,
+    //                     y,
     //                     color);
     //     }
     // }
