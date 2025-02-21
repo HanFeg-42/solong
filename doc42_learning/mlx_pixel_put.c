@@ -24,17 +24,13 @@ int resize_window(int width, int height, void *param)
     return (0);
 }
 
-int close_window(int width, int height, void *param)
+int close_window(t_mlx_data *data)
 {
-    (void)param;
-    if (key == XK_Escape)
-    {
-        printf("you pressed ESC\n");
-        mlx_destroy_window(data->mlx_ptr, data->mlx_win);
-        mlx_destroy_display(data->mlx_ptr);
-        free(data->mlx_ptr);
-        exit(1);
-    }
+    printf("you pressed ESC\n");
+    mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+    mlx_destroy_display(data->mlx_ptr);
+    free(data->mlx_ptr);
+    exit(1);
     return (0);
 }
 
@@ -57,7 +53,7 @@ int main()
         usleep(100);
         y++;
     }
-    mlx_hook(mlx.mlx_win, 17, 0, close_window, NULL);
+    mlx_hook(mlx.mlx_win, 17, 0, close_window, &mlx);
     // mlx_hook(mlx.mlx_win, 22, 0, resize_window, NULL);
     mlx_key_hook(mlx.mlx_win, key_press, &mlx);
     mlx_loop(mlx.mlx_ptr);
