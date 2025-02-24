@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/21 13:45:05 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:15:57 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_map_data
 {
 	char **m;
 	int count;
+	int width;
 	int height;
 	int x;
 	int y;
