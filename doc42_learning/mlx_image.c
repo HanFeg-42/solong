@@ -63,24 +63,43 @@ int	main(void)
 	void *img3;
 	int w3;
 	int h3;
+	char *rp3;
 
 	mlx = mlx_init();
     data.mlx_ptr = mlx;
-	mlx_win = mlx_new_window(mlx, 920, 880, "Hello world!");
+	mlx_win = mlx_new_window(mlx, 800, 600, "Hello world!");
     data.mlx_win = mlx_win;
     xpm.relative_path = "./gojo_saturu.xpm";
-	rp = "./Winter-simplified.xpm";
+	rp = "./winter.xpm";
+	rp3 = "./spring_square.xpm";
+	int wp, hp;
 	// img.img = mlx_new_image(mlx, 920, 880);
     img.img = mlx_xpm_file_to_image(mlx, xpm.relative_path, &xpm.img_width, &xpm.img_height);
-    img2 = mlx_xpm_file_to_image(mlx, rp, &w, &h);
-    img3 = mlx_xpm_file_to_image(mlx, rp, &w3, &h3);
+    // img2 = mlx_xpm_file_to_image(mlx, rp, &w, &h);
+    // img3 = mlx_xpm_file_to_image(mlx, rp3, &w3, &h3);
+	// void *imgp = mlx_xpm_file_to_image(mlx, "./pandaa.xpm", &wp, &hp);
 	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 	// 							&img.endian);
 	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
     mlx_string_put(mlx, mlx_win, 420, 75, 0xFFFFFF, "Goju Saturu");
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 75, 100);
-	mlx_put_image_to_window(mlx, mlx_win, img2, 1, 1);
-	mlx_put_image_to_window(mlx, mlx_win, img3, 50, 1);
+	// int i;
+	// int j = 1;
+	// while (j < 880)
+	// {
+	// 	i = 1;
+	// 	while (i < 920)
+	// 	{
+	// 		if (i <= 50 || j <= 50 || i >= 750 || j >= 550)
+	// 			mlx_put_image_to_window(mlx, mlx_win, img2, i, j);
+	// 		else
+	// 			mlx_put_image_to_window(mlx, mlx_win, img3, i, j);
+	// 		i = i +  64;
+	// 	}
+	// 	j = j + 64;
+	// }
+	// mlx_put_image_to_window(mlx, mlx_win, imgp, 64, 64);
+	// mlx_put_image_to_window(mlx, mlx_win, img2, 1, 1);
     mlx_hook(data.mlx_win, 17, 0, close_window, &data);
     mlx_key_hook(data.mlx_win, key_press, &data);
 	mlx_loop(mlx);
