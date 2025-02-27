@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/27 15:30:00 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:46:49 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ void	rendering_to_win(t_mlx_data *data);
 void	so_long(t_mlx_data *(data));
 int		key_press(int key, t_mlx_data *data);
 int		close_window(t_mlx_data *data);
+int is_move_valid(char *move, char **map);
+void move_player(char *move, t_mlx_data *data);
+
 
 
 #endif

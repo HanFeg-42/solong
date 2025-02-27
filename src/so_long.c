@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/27 15:32:28 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:47:30 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,49 @@ int    key_press(int key, t_mlx_data *data)
         free(data->mlx_ptr);
         exit(0);
     }
-	// else if (key == XK_W || key == ARROW_U)
-	// 	move_player("up", data->map);
-	// else if (key == XK_S || key == ARROW_D)
-	// 	move_player("down", data->map);
-	// else if (key == XK_D || key == ARROW_R)
-	// 	move_player("right", data->map);
-	// else if (key == XK_A || key == ARROW_L)
-	// 	move_player("left", data->map);
+	else if (key == XK_W || key == ARROW_U)
+		move_player("up", data);
+	else if (key == XK_S || key == ARROW_D)
+		move_player("down", data);
+	else if (key == XK_D || key == ARROW_R)
+		move_player("right", data);
+	else if (key == XK_A || key == ARROW_L)
+		move_player("left", data);
     return (0);
 }
-// void move_player(char *move, t_map *map_data)
-// {
-// 	if (is_move_valid(move, map_data))
-// 	{
-// 		if (ft_strncmp(move, "up"))
-			// data->map>[]
-// 	}
-// }
+void move_player(char *move, t_mlx_data *data)
+{
+	if (is_move_valid(move, data->map))
+	{
+		if (!ft_strncmp(move, "up", 2))
+		{
+			data->map[data->py][data->px] = '0';
+			data->map[data->py - 1][data->px] = 'P';
+		}
+		else if (!ft_strncmp(move, "down", 4))
+		{
+			data->map[data->py][data->px] = '0';
+			data->map[data->py + 1][data->px] = 'P';
+		}
+		else if (!ft_strncmp(move, "right", 4))
+		{
+			data->map[data->py][data->px] = '0';
+			data->map[data->py][data->px + 1] = 'P';
+		}
+		else if (!ft_strncmp(move, "left", 4))
+		{
+			data->map[data->py][data->px] = '0';
+			data->map[data->py][data->px - 1] = 'P';
+		}
+	}
+}
+
+int is_move_valid(char *move, char **map)
+{
+	(void)move;
+	(void)map;
+	return 0;
+}
 
 int	get_map_height(char **map)
 {
