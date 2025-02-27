@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/27 15:16:54 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:32:28 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,30 +69,27 @@ int	get_map_width(char **map)
 	return (i);
 }
 
-void	so_long(char ***map)
+void	so_long(t_mlx_data *data)
 {
-	t_mlx_data data;
-
-	int h = get_map_height(*map);
-	int w = get_map_width(*map);
-	data.mlx_ptr = mlx_init();
-	if (!data.mlx_ptr)
+	int h = get_map_height(data->map);
+	int w = get_map_width(data->map);
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
 		exit(1);
-	data.mlx_win = mlx_new_window(data.mlx_ptr, w * SCALE,
+	data->mlx_win = mlx_new_window(data->mlx_ptr, w * SCALE,
 					h * SCALE, "so_long");
-	if (!data.mlx_win)
+	if (!data->mlx_win)
 	{
-		mlx_destroy_display(data.mlx_ptr);
-		free(data.mlx_ptr);
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
 		exit(1);
 	}
-	loading_images(&data);
-	// map[0][3][6] = '1';
-	rendering_to_win(&data, *map);
-	mlx_hook(data.mlx_win, 17, 0, close_window, &data);
-    mlx_key_hook(data.mlx_win, key_press, &data);
-	// mlx_loop_hook(data.mlx_ptr, );
-	mlx_loop(data.mlx_ptr);
+	loading_images(data);
+	rendering_to_win(data);
+	mlx_hook(data->mlx_win, 17, 0, close_window, &data);
+    mlx_key_hook(data->mlx_win, key_press, &data);
+	// mlx_loop_hook(data->mlx_ptr, );
+	mlx_loop(data->mlx_ptr);
 }
 
 void	loading_images(t_mlx_data *data)
@@ -111,7 +108,7 @@ void	loading_images(t_mlx_data *data)
 	}
 }
 
-void	rendering_to_win(t_mlx_data *data, char **map)
+void	rendering_to_win(t_mlx_data *data)
 {
 	int x;
 	int y;
@@ -119,20 +116,20 @@ void	rendering_to_win(t_mlx_data *data, char **map)
 
 	tile_size = SCALE;
 	y = 0;
-	while(map[y])
+	while(data->map[y])
 	{
 		x = 0;
-		while (map[y][x])
+		while (data->map[y][x])
 		{
-			if (map[y][x] == '1')
+			if (data->map[y][x] == '1')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[0], tile_size * x, tile_size * y);
-			if (map[y][x] == '0')
+			if (data->map[y][x] == '0')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[1], tile_size * x, tile_size * y);
-			if (map[y][x] == 'P')
+			if (data->map[y][x] == 'P')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[2], tile_size * x, tile_size * y);
-			if (map[y][x] == 'E')
+			if (data->map[y][x] == 'E')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[3], tile_size * x, tile_size * y);
-			if (map[y][x] == 'C')
+			if (data->map[y][x] == 'C')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[4], tile_size * x, tile_size * y);
 			x++;
 		}
@@ -143,8 +140,7 @@ void	rendering_to_win(t_mlx_data *data, char **map)
 int main(int ac, char **av)
 {
 	t_solong    var;
-	char **b;
-	// t_mlx_data data;
+	t_mlx_data data;
 
 	if (ac != 2)
 		throw_error("unvalid argument!\n");
@@ -153,8 +149,8 @@ int main(int ac, char **av)
 	printf("\033[32m map is valid congrats! \033[0m\n");
 	// var.map[3][6] = 'B';
 	print_map(var.map);\
-	b = var.map;
-	so_long(&b);
+	data.map = var.map;
+	so_long(&data);
 	clean_up(var.map);
 	return (0);
 }
