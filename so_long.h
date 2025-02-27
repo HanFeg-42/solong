@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/25 01:00:19 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:12:26 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@
 
 # define BUFFER_SIZE 1000000
 # define SCALE 64
-# define PATH_WALL "../textures/wall.xpm"
-# define PATH_FLOOR "../textures/floor.xpm"
-# define PATH_PLAYER "../textures/player.xpm"
-# define PATH_EXIT "../textures/exit.xpm"
-# define PATH_COLLECTIBLE "../textures/collectible.xpm"
+# define PATH_WALL "textures/wall1.xpm"
+# define PATH_FLOOR "textures/floor1.xpm"
+# define PATH_PLAYER "textures/player1.xpm"
+# define PATH_EXIT "textures/exit1.xpm"
+# define PATH_COLLECTIBLE "textures/collectible1.xpm"
+# define ARROW_U 65362
+# define ARROW_D 65364
+# define ARROW_R 65363
+# define ARROW_L 65361
 
 //struct
 typedef struct s_solong
@@ -60,7 +64,10 @@ typedef struct s_mlx_data
     void *mlx_ptr;
     void *mlx_win;
 	void *images[5];
-	t_map *map;
+	// t_map *map;
+	char **map;
+	int px;
+	int py;
 } t_mlx_data;
 
 //parsing
@@ -81,12 +88,10 @@ char **copy_map(t_map_data data);
 
 //so_long
 void	loading_images(t_mlx_data *data);
-void	rendering_to_win(t_mlx_data *data);
-void	init_map_data(t_mlx_data *data, char **map);
-void	so_long(char **map);
+void	rendering_to_win(t_mlx_data *data, char **map);
+void	so_long(char ***map);
 int		key_press(int key, t_mlx_data *data);
 int		close_window(t_mlx_data *data);
-char **copy_map_(char **map);
 
 
 #endif

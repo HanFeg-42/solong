@@ -75,7 +75,8 @@ int	main(void)
 	int wp, hp;
 	// img.img = mlx_new_image(mlx, 920, 880);
     img.img = mlx_xpm_file_to_image(mlx, xpm.relative_path, &xpm.img_width, &xpm.img_height);
-    // img2 = mlx_xpm_file_to_image(mlx, rp, &w, &h);
+    printf("%p\n", img.img);
+	// img2 = mlx_xpm_file_to_image(mlx, rp, &w, &h);
     // img3 = mlx_xpm_file_to_image(mlx, rp3, &w3, &h3);
 	// void *imgp = mlx_xpm_file_to_image(mlx, "./pandaa.xpm", &wp, &hp);
 	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
