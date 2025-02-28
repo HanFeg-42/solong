@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/27 15:46:49 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/28 22:16:27 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_solong
 {
 	char **map;
 	char *err;
+	int	coins;
 }	t_solong;
 
 typedef struct s_map_data
@@ -63,11 +64,12 @@ typedef struct s_mlx_data
 {
     void *mlx_ptr;
     void *mlx_win;
-	void *images[5];
+	void *images[6];
 	// t_map *map;
 	char **map;
 	int px;
 	int py;
+	int coins;
 } t_mlx_data;
 
 //parsing
@@ -88,11 +90,11 @@ char **copy_map(t_map_data data);
 
 //so_long
 void	loading_images(t_mlx_data *data);
-void	rendering_to_win(t_mlx_data *data);
+int	rendering_to_win(t_mlx_data *data);
 void	so_long(t_mlx_data *(data));
 int		key_press(int key, t_mlx_data *data);
 int		close_window(t_mlx_data *data);
-int is_move_valid(char *move, char **map);
+int is_move_valid(char *move, t_mlx_data *data);
 void move_player(char *move, t_mlx_data *data);
 
 

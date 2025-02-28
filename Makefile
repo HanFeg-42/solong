@@ -1,6 +1,6 @@
 NAME	=	so_long
 CC		= 	cc
-CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address -g
 # MLXFLAGS=   -lmlx -lXext -lX11
 MLXFLAGS=   -Lminilibx-linux -lmlx_Linux -lX11 -lXext
 SRC		=	src/so_long.c src/parsing.c src/get_next_line.c src/errors.c

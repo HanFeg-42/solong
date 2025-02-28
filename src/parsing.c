@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/19 02:19:57 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/28 22:00:34 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ char	*is_map_valid(char *map, t_solong *var)
 		perror_exit("failed to open");
 	data.m = get_map(fd, &data);
 	var->map = copy_map(data);
+	var->coins = data.count - 1;
 	if (!recursion(data.m, data.x, data.y, &data.count))
 		return (print_map(data.m), clean_up(data.m), "unvalid path\n");
 	return (clean_up(data.m), NULL);
