@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/28 22:00:34 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/01 01:09:00 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ char	**get_map(int fd, t_map_data *data)
 		check_element(line, 'P', &P, data);
 		check_element(line, 'E', &E, data);
 		check_element(line, 'C', &C, data);
+	printf(" this is me %d\n\n\n",C);
 		tmp = map;
 		map = ft_strjoin(map, line);
 		free(tmp);
@@ -80,24 +81,33 @@ char	**get_map(int fd, t_map_data *data)
 void	check_element(char *line, char c, int *character, t_map_data *data)
 {
 	char *is_exist;
+	// int i;
 
 	is_exist = ft_strchr(line, c);
 	if (is_exist)
 	{
-		if (c == 'P' && !(*character))
-		{
-			(*character) = 1;
-			data->x = ft_strchr_index(line, c);
-			data->y = data->height - 1;
-		}
-		else if (c == 'P' && (*character))
-			throw_error("unvalid map: duplicated P\n");
-		if (c == 'E' && !(*character))
-			(*character) = 1;
-		else if (c == 'E' && (*character))
-			throw_error("unvalid map: duplicated E\n");
-		if (c == 'C' && !(*character))
-			(*character)++;
+		// i = 0;
+		// while (line[i])
+		// {
+			if (c == 'P' && !(*character))
+			{
+				(*character) = 1;
+				data->x = ft_strchr_index(line, c);
+				data->y = data->height - 1;
+			}
+			else if (c == 'P' && (*character))
+				throw_error("unvalid map: duplicated P\n");
+			if (c == 'E' && !(*character))
+				(*character) = 1;
+			else if (c == 'E' && (*character))
+				throw_error("unvalid map: duplicated E\n");
+			if (c == 'C')
+			{
+				printf("hi i was here\n\n");
+				(*character)++;
+			}
+		// 	i++;
+		// }
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/28 22:25:20 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/01 00:38:33 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,59 +55,82 @@ void move_player(char *move, t_mlx_data *data)
 		printf("player pos: x=%d---y=%d\n",data->px, data->py);
 		if (!ft_strncmp(move, "up", 2))
 		{
+			check_exit(move, data);
+			// {
 			data->map[data->py][data->px] = '0';
+			if (data->map[data->py - 1][data->px] == 'C')
+				data->coins--;
 			data->map[data->py - 1][data->px] = 'P';
 			data->py--;
+			// }
+			// else
+			// {
+			// 	data->map[data->py][data->px] = '0';
+			// 	data->map[data->py - 1][data->px] = 'X';
+			// 	data->py--;
+			// }
 		}
 		else if (!ft_strncmp(move, "down", 4))
 		{
+			check_exit(move, data);
 			data->map[data->py][data->px] = '0';
+			if (data->map[data->py + 1][data->px] == 'C')
+			{
+				data->coins--;
+			}
 			data->map[data->py + 1][data->px] = 'P';
 			data->py++;
 		}
 		else if (!ft_strncmp(move, "right", 4))
 		{
+			check_exit(move, data);
 			data->map[data->py][data->px] = '0';
+			if (data->map[data->py][data->px + 1] == 'C')
+				data->coins--;
 			data->map[data->py][data->px + 1] = 'P';
 			data->px++;
 		}
 		else if (!ft_strncmp(move, "left", 4))
 		{
+			check_exit(move, data);
 			data->map[data->py][data->px] = '0';
+			if (data->map[data->py][data->px - 1] == 'C')
+				data->coins--;
 			data->map[data->py][data->px - 1] = 'P';
 			data->px--;
 		}
 	}
 }
 
-void	check_exit(char *move, t_mlx_data *data)
+int	check_exit(char *move, t_mlx_data *data)
 {
 	if (!ft_strncmp(move, "up", 2) && data->map[data->py - 1][data->px] != 'E')
-		return ;
+		return 0;
 	else if (!ft_strncmp(move, "down", 4) && data->map[data->py + 1][data->px] != 'E')
-		return ;
+		return 0;
 	else if (!ft_strncmp(move, "right", 4) && data->map[data->py][data->px + 1] != 'E')
-		return ;
+		return 0;
 	else if (!ft_strncmp(move, "left", 4) && data->map[data->py][data->px - 1] != 'E')
-		return ;
-	// if (!data->coins)
-	// {
+		return 0;
+	printf("%d\n", data->coins);
+	if (data->coins == 0)
+	{
 		printf("you WIN\n");
-	// 	data->map[data->py][data->px] = 'X';
-	// 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[5], SCALE * data->px, SCALE * data->py);
+		data->map[data->py][data->px] = '0';
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 		clean_up(data->map);
 		exit(1);
-	// }
-	// else
-	// 	data->map[data->py][data->px] = 'X';
+	}
+	else
+	{
+		return 1;
+	}
 }
 
 int is_move_valid(char *move, t_mlx_data *data)
 {
-	check_exit(move, data);
 	if (!ft_strncmp(move, "up", 2) && data->map[data->py - 1][data->px] == '1')
 		return (0);
 	else if (!ft_strncmp(move, "down", 4) && data->map[data->py + 1][data->px] == '1')
@@ -193,13 +216,15 @@ int	rendering_to_win(t_mlx_data *data)
 		{
 			if (data->map[y][x] == '1')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[0], tile_size * x, tile_size * y);
-			if (data->map[y][x] == '0')
+			else if (data->map[y][x] == '0')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[1], tile_size * x, tile_size * y);
-			if (data->map[y][x] == 'P')
+			else if (data->map[y][x] == 'P')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[2], tile_size * x, tile_size * y);
-			if (data->map[y][x] == 'E')
+			else if (x == data->ex && y == data->ey && data->coins <= 0)
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[3], tile_size * x, tile_size * y);
-			if (data->map[y][x] == 'C')
+			else if (x == data->ex && y == data->ey && data->coins > 0)
+				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[1], tile_size * x, tile_size * y);
+			else if (data->map[y][x] == 'C')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[4], tile_size * x, tile_size * y);
 			if (data->map[y][x] == 'X')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[5], tile_size * x, tile_size * y);
@@ -210,7 +235,7 @@ int	rendering_to_win(t_mlx_data *data)
 	return (0);
 }
 
-void init_player_position(t_mlx_data *data)
+void init_player_exit_position(t_mlx_data *data)
 {
 	int (x), (y);
 	y = 0;
@@ -223,7 +248,11 @@ void init_player_position(t_mlx_data *data)
 			{
 				data->px = x;
 				data->py = y;
-				return ;
+			}
+			if (data->map[y][x] == 'E')
+			{
+				data->ex = x;
+				data->ey = y;
 			}
 			x++;
 		}
@@ -245,7 +274,8 @@ printf("hello\n");
 	print_map(var.map);
 	data.map = var.map;
 	data.coins = var.coins;
-	init_player_position(&data);
+	printf("%d\n\n\n\n\n", data.coins);
+	init_player_exit_position(&data);
 	so_long(&data);
 	clean_up(var.map);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/28 22:16:27 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/02/28 23:26:18 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_mlx_data
 	char **map;
 	int px;
 	int py;
+	int ex;
+	int ey;
 	int coins;
 } t_mlx_data;
 
@@ -96,7 +98,7 @@ int		key_press(int key, t_mlx_data *data);
 int		close_window(t_mlx_data *data);
 int is_move_valid(char *move, t_mlx_data *data);
 void move_player(char *move, t_mlx_data *data);
-
+int	check_exit(char *move, t_mlx_data *data);
 
 
 #endif
