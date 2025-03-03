@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/03 00:11:21 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/03 00:41:14 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,66 +38,67 @@ int	recursion(char **map_data, int x, int y, int *count)
 		return (false);
 	return (true);
 }
-// char	**get_map(int fd)
-// {
-// 	char *line;
-// 	char *join;
-// 	char **map;
-// 	char *tmp;
-
-// 	line = get_next_line(fd, 0);
-// 	join = ft_strdup("");
-// 	while (line)
-// 	{
-// 		tmp = join;
-// 		join = ft_strjoin(join, line);
-// 		free(tmp);
-// 		free(line);
-// 		line = get_next_line(fd, 0);
-// 	}
-// 	free(line);
-// 	map = ft_split(join, '\n');
-// 	return (map);
-// }
-
-char	**get_map(int fd, t_map_data *data)
+char	**get_map(int fd)
 {
 	char *line;
-	char *map;
-	char **map_arr;
+	char *join;
+	char **map;
 	char *tmp;
-	int P = 0;
-	int E = 0;
-	int C = 0;
-	int line_size;
-	data->height = 0;
 
 	line = get_next_line(fd, 0);
-	line_size = ft_strlen(line);
-	is_line_wall(line);
-	map = ft_strdup("");
+	join = ft_strdup("");
 	while (line)
 	{
-		data->height++;
-		is_line_valid(line, line_size); // contains only 1 0 E C P M
-		check_element(line, 'P', &P, data);
-		check_element(line, 'E', &E, data);
-		check_element(line, 'C', &C, data);
-	printf(" this is me %d\n\n\n",C);
-		tmp = map;
-		map = ft_strjoin(map, line);
+		tmp = join;
+		join = ft_strjoin(join, line);
 		free(tmp);
 		free(line);
 		line = get_next_line(fd, 0);
 	}
-	if (!(P == 1 && E == 1 && C > 0))
-		(free(map), throw_error("unvalid map: p | e | c chi wahed fihum makaynch\n"));
-	map_arr = ft_split(map, '\n');
-	free(map);
-	is_line_wall(map_arr[data->height - 1]);
-	data->count = E + C;
-	return (map_arr);
+	free(line);
+	map = ft_split(join, '\n');
+	free(join);
+	return (map);
 }
+
+// char	**get_map(int fd, t_map_data *data)
+// {
+// 	char *line;
+// 	char *map;
+// 	char **map_arr;
+// 	char *tmp;
+// 	int P = 0;
+// 	int E = 0;
+// 	int C = 0;
+// 	int line_size;
+// 	data->height = 0;
+
+// 	line = get_next_line(fd, 0);
+// 	line_size = ft_strlen(line);
+// 	is_line_wall(line);
+// 	map = ft_strdup("");
+// 	while (line)
+// 	{
+// 		data->height++;
+// 		is_line_valid(line, line_size); // contains only 1 0 E C P M
+// 		check_element(line, 'P', &P, data);
+// 		check_element(line, 'E', &E, data);
+// 		check_element(line, 'C', &C, data);
+// 	printf(" this is me %d\n\n\n",C);
+// 		tmp = map;
+// 		map = ft_strjoin(map, line);
+// 		free(tmp);
+// 		free(line);
+// 		line = get_next_line(fd, 0);
+// 	}
+// 	if (!(P == 1 && E == 1 && C > 0))
+// 		(free(map), throw_error("unvalid map: p | e | c chi wahed fihum makaynch\n"));
+// 	map_arr = ft_split(map, '\n');
+// 	free(map);
+// 	is_line_wall(map_arr[data->height - 1]);
+// 	data->count = E + C;
+// 	return (map_arr);
+// }
 
 void	check_element(char *line, char c, int *character, t_map_data *data)
 {
@@ -154,7 +155,7 @@ void	is_line_valid(char *line, int size)
 	}
 	else
 	{
-		if (line[0] != '1' || line[size - 2] != '1' || size - 1 != (int)ft_strlen(line))
+		if (line[0] != '1' || line[size - 1] != '1' || size != (int)ft_strlen(line))
 			throw_error("unvalid map 3ndk mochkil\n");
 	}
 	while (line[i + 1])
@@ -174,11 +175,15 @@ char	*is_map_valid(char *map, t_solong *var)
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		perror_exit("failed to open");
-	data.m = get_map(fd, &data);
-	// check_map(&data);
+	// data.m = get_map(fd, &data);
+	data.m = get_map(fd);
+	check_map(&data);
 	var->map = copy_map(data);
 	var->coins = data.count;
 	data.count++;
+	init_player_position(&data);
+	print_map(data.m);
+	// exit(0);
 	if (!recursion(data.m, data.x, data.y, &data.count))
 		return (print_map(data.m), clean_up(data.m), "unvalid path\n");
 	return (clean_up(data.m), NULL);
@@ -223,6 +228,25 @@ void	check_map(t_map_data *data)
 	is_collectible_valid(data);
 	is_exit_valid(data);
 }
+void init_player_position(t_map_data *data)
+{
+	int (x), (y);
+	y = 0;
+	while (data->m[y])
+	{
+		x = 0;
+		while (data->m[y][x])
+		{
+			if (data->m[y][x] == 'P')
+			{
+				data->x = x;
+				data->y = y;
+			}
+			x++;
+		}
+		y++;
+	}
+}
 
 
 void is_map_rect(t_map_data *data)
@@ -238,6 +262,7 @@ void is_map_rect(t_map_data *data)
 		is_line_valid(data->m[i], size);
 		i++;
 	}
+	data->height = i;
 	is_line_wall(data->m[i - 1]);
 }
 

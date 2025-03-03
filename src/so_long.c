@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/02 23:36:40 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/03 00:39:45 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,7 +273,7 @@ printf("hello\n");
 	printf("\033[32m map is valid congrats! \033[0m\n");
 	print_map(var.map);
 	data.map = var.map;
-	data.coins = 7;
+	data.coins = var.coins;
 	printf("%d\n\n\n\n\n", data.coins);
 	init_player_exit_position(&data);
 	so_long(&data);

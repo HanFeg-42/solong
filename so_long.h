@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/03 00:10:44 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/03 00:39:23 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	perror_exit(char *err);
 void	clean_up(char **str);
 char	*get_next_line(int fd, int f);
 int		recursion(char **map_data, int x, int y, int *count);
-// char	**get_map(int fd);
-char	**get_map(int fd, t_map_data *data);
+char	**get_map(int fd);
+// char	**get_map(int fd, t_map_data *data);
 void	check_element(char *line, char c, int *character, t_map_data *data);
 void	is_line_wall(char *line);
 void	is_line_valid(char *line, int size);
@@ -92,6 +92,7 @@ void is_map_rect(t_map_data *data);
 void is_player_valid(t_map_data *data);
 void is_exit_valid(t_map_data *data);
 void is_collectible_valid(t_map_data *data);
+void init_player_position(t_map_data *data);
 
 
 // char	*is_map_valid(char *map);
