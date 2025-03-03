@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/01 01:09:00 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/03 00:11:21 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,27 @@ int	recursion(char **map_data, int x, int y, int *count)
 		return (false);
 	return (true);
 }
+// char	**get_map(int fd)
+// {
+// 	char *line;
+// 	char *join;
+// 	char **map;
+// 	char *tmp;
+
+// 	line = get_next_line(fd, 0);
+// 	join = ft_strdup("");
+// 	while (line)
+// 	{
+// 		tmp = join;
+// 		join = ft_strjoin(join, line);
+// 		free(tmp);
+// 		free(line);
+// 		line = get_next_line(fd, 0);
+// 	}
+// 	free(line);
+// 	map = ft_split(join, '\n');
+// 	return (map);
+// }
 
 char	**get_map(int fd, t_map_data *data)
 {
@@ -81,33 +102,27 @@ char	**get_map(int fd, t_map_data *data)
 void	check_element(char *line, char c, int *character, t_map_data *data)
 {
 	char *is_exist;
-	// int i;
 
 	is_exist = ft_strchr(line, c);
 	if (is_exist)
 	{
-		// i = 0;
-		// while (line[i])
-		// {
-			if (c == 'P' && !(*character))
-			{
-				(*character) = 1;
-				data->x = ft_strchr_index(line, c);
-				data->y = data->height - 1;
-			}
-			else if (c == 'P' && (*character))
-				throw_error("unvalid map: duplicated P\n");
-			if (c == 'E' && !(*character))
-				(*character) = 1;
-			else if (c == 'E' && (*character))
-				throw_error("unvalid map: duplicated E\n");
-			if (c == 'C')
-			{
-				printf("hi i was here\n\n");
-				(*character)++;
-			}
-		// 	i++;
-		// }
+		if (c == 'P' && !(*character))
+		{
+			(*character) = 1;
+			data->x = ft_strchr_index(line, c);
+			data->y = data->height - 1;
+		}
+		else if (c == 'P' && (*character))
+			throw_error("unvalid map: duplicated P\n");
+		if (c == 'E' && !(*character))
+			(*character) = 1;
+		else if (c == 'E' && (*character))
+			throw_error("unvalid map: duplicated E\n");
+		if (c == 'C')
+		{
+			printf("hi i was here\n\n");
+			(*character)++;
+		}
 	}
 }
 
@@ -160,8 +175,10 @@ char	*is_map_valid(char *map, t_solong *var)
 	if (fd < 0)
 		perror_exit("failed to open");
 	data.m = get_map(fd, &data);
+	// check_map(&data);
 	var->map = copy_map(data);
-	var->coins = data.count - 1;
+	var->coins = data.count;
+	data.count++;
 	if (!recursion(data.m, data.x, data.y, &data.count))
 		return (print_map(data.m), clean_up(data.m), "unvalid path\n");
 	return (clean_up(data.m), NULL);
@@ -198,3 +215,113 @@ void print_map(char **map)
 }
 
 // .ber   the name of file should be larger than 4 caract...
+
+void	check_map(t_map_data *data)
+{
+	is_map_rect(data);
+	is_player_valid(data);
+	is_collectible_valid(data);
+	is_exit_valid(data);
+}
+
+
+void is_map_rect(t_map_data *data)
+{
+	int i;
+	size_t size;
+
+	size = ft_strlen(data->m[0]);
+	is_line_wall(data->m[0]);
+	i = 1;
+	while (data->m[i])
+	{
+		is_line_valid(data->m[i], size);
+		i++;
+	}
+	is_line_wall(data->m[i - 1]);
+}
+
+void is_player_valid(t_map_data *data)
+{
+	int x;
+	int y;
+	int check = true;
+
+	y = 0;
+	while (data->m[y])
+	{
+		x = 0;
+		while (data->m[y][x])
+		{
+			if (data->m[y][x] == 'P' && check)
+				check = false;
+			else if (data->m[y][x] == 'P' && !check)
+				throw_error("player duplicated\n");
+			x++;
+		}
+		y++;
+	}
+	if (check)
+		throw_error("No player detected\n");
+}
+
+void is_exit_valid(t_map_data *data)
+{
+	int x;
+	int y;
+	int check = true;
+
+	y = 0;
+	while (data->m[y])
+	{
+		x = 0;
+		while (data->m[y][x])
+		{
+			if (data->m[y][x] == 'E' && check)
+				check = false;
+			else if (data->m[y][x] == 'E' && !check)
+				throw_error("exit duplicated\n");
+			x++;
+		}
+		y++;
+	}
+	if (check)
+		throw_error("No exit detected\n");
+}
+
+void is_collectible_valid(t_map_data *data)
+{
+	int x;
+	int y;
+	int check = true;
+	int count;
+
+	count = 0;
+	y = 0;
+	while (data->m[y])
+	{
+		x = 0;
+		while (data->m[y][x])
+		{
+			if (data->m[y][x] == 'C')
+			{
+				check = false;
+				count++;
+			}
+			x++;
+		}
+		y++;
+	}
+	if (check)
+		throw_error("No coins detected\n");
+	data->count = count;
+}
+
+
+//TODO : is_map_rect------------------------------------------------------>
+//TODO : is_map_surrounded_by_walls--------------------------------------->
+//TODO : check_elements (conatains only 1 0 E P C M)---------------------->
+//TODO : is_player_valid (contains only one P)---------------------------->
+//TODO : is_exit_valid (contains only one E)------------------------------>
+//TODO : is_collectible_valid (contains at least one C)------------------->
+

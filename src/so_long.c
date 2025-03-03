@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/01 00:38:33 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/02 23:36:40 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,13 @@ void move_player(char *move, t_mlx_data *data)
 
 int	check_exit(char *move, t_mlx_data *data)
 {
-	if (!ft_strncmp(move, "up", 2) && data->map[data->py - 1][data->px] != 'E')
+	if (!ft_strncmp(move, "up", 2) && data->map[data->py - 1][data->px] != 'E' && !(data->px == data->ex && data->py - 1 == data->ey && !data->coins))
 		return 0;
-	else if (!ft_strncmp(move, "down", 4) && data->map[data->py + 1][data->px] != 'E')
+	else if (!ft_strncmp(move, "down", 4) && data->map[data->py + 1][data->px] != 'E' && !(data->px == data->ex && data->py + 1 == data->ey && !data->coins))
 		return 0;
-	else if (!ft_strncmp(move, "right", 4) && data->map[data->py][data->px + 1] != 'E')
+	else if (!ft_strncmp(move, "right", 4) && data->map[data->py][data->px + 1] != 'E' && !(data->px + 1 == data->ex && data->py == data->ey && !data->coins))
 		return 0;
-	else if (!ft_strncmp(move, "left", 4) && data->map[data->py][data->px - 1] != 'E')
+	else if (!ft_strncmp(move, "left", 4) && data->map[data->py][data->px - 1] != 'E' && !(data->px - 1 == data->ex && data->py == data->ey && !data->coins))
 		return 0;
 	printf("%d\n", data->coins);
 	if (data->coins == 0)
@@ -179,7 +179,7 @@ void	so_long(t_mlx_data *data)
 	loading_images(data);
 	// rendering_to_win(data);
 	mlx_hook(data->mlx_win, 17, 0, close_window, data);
-    mlx_key_hook(data->mlx_win, key_press, data);
+    mlx_hook(data->mlx_win,2 , (1L<<0), key_press, data);
 	mlx_loop_hook(data->mlx_ptr, rendering_to_win, data);
 	mlx_loop(data->mlx_ptr);
 }
@@ -216,13 +216,13 @@ int	rendering_to_win(t_mlx_data *data)
 		{
 			if (data->map[y][x] == '1')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[0], tile_size * x, tile_size * y);
-			else if (data->map[y][x] == '0')
+			else if (data->map[y][x] == '0' && !(x == data->ex && y == data->ey && !data->coins))
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[1], tile_size * x, tile_size * y);
 			else if (data->map[y][x] == 'P')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[2], tile_size * x, tile_size * y);
-			else if (x == data->ex && y == data->ey && data->coins <= 0)
+			else if (x == data->ex && y == data->ey && !data->coins)
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[3], tile_size * x, tile_size * y);
-			else if (x == data->ex && y == data->ey && data->coins > 0)
+			else if (x == data->ex && y == data->ey && data->coins)
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[1], tile_size * x, tile_size * y);
 			else if (data->map[y][x] == 'C')
 				mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[4], tile_size * x, tile_size * y);
@@ -273,7 +273,7 @@ printf("hello\n");
 	printf("\033[32m map is valid congrats! \033[0m\n");
 	print_map(var.map);
 	data.map = var.map;
-	data.coins = var.coins;
+	data.coins = 7;
 	printf("%d\n\n\n\n\n", data.coins);
 	init_player_exit_position(&data);
 	so_long(&data);
