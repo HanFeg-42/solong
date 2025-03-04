@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/03 00:39:23 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/04 23:31:35 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ typedef struct s_mlx_data
 	int ex;
 	int ey;
 	int coins;
+	int	count;
+	int old_count;
+
 } t_mlx_data;
 
 //parsing

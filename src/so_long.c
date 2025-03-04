@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/03 00:39:45 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/04 23:57:01 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,19 @@ int close_window(t_mlx_data *data)
 {
     printf("you clicked red cross\n");
     mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+	clean_up(data->map);
+	int i = 0;
+		while (data->images[i])
+			mlx_destroy_image(data->mlx_ptr, data->images[i++]);
     mlx_destroy_display(data->mlx_ptr);
     free(data->mlx_ptr);
-	clean_up(data->map);
+	(void)data;
     exit(0);
     return (1);
 }
 int    key_press(int key, t_mlx_data *data)
 {
-	// int i;
+	int i;
 
     if (key == XK_Escape)
     {
@@ -32,9 +36,9 @@ int    key_press(int key, t_mlx_data *data)
         mlx_destroy_window(data->mlx_ptr, data->mlx_win);
         mlx_destroy_display(data->mlx_ptr);
 		clean_up(data->map);
-		// i = 0;
-		// while (data->images[i])
-		// 	mlx_destroy_image(data->mlx_ptr, data->images[i++]);
+		i = 0;
+		while (data->images[i])
+			mlx_destroy_image(data->mlx_ptr, data->images[i++]);
         free(data->mlx_ptr);
         exit(0);
     }
@@ -52,7 +56,8 @@ void move_player(char *move, t_mlx_data *data)
 {
 	if (is_move_valid(move, data))
 	{
-		printf("player pos: x=%d---y=%d\n",data->px, data->py);
+		data->old_count = data->count;
+		++data->count;
 		if (!ft_strncmp(move, "up", 2))
 		{
 			check_exit(move, data);
@@ -139,6 +144,7 @@ int is_move_valid(char *move, t_mlx_data *data)
 		return (0);
 	else if (!ft_strncmp(move, "left", 4) && data->map[data->py][data->px - 1] == '1')
 		return (0);
+	//printf("HELLOO");
 	return 1;
 }
 
@@ -232,6 +238,11 @@ int	rendering_to_win(t_mlx_data *data)
 		}
 		y++;
 	}
+	if (data->old_count != data->count)
+ 		{
+			printf("Number of moves: %d\n", data->count);
+			data->old_count = data->count;
+		}
 	return (0);
 }
 
@@ -274,6 +285,7 @@ printf("hello\n");
 	print_map(var.map);
 	data.map = var.map;
 	data.coins = var.coins;
+	data.count = 0;
 	printf("%d\n\n\n\n\n", data.coins);
 	init_player_exit_position(&data);
 	so_long(&data);

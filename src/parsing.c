@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/03 00:41:14 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/04 21:14:16 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ char	**get_map(int fd)
 	char *join;
 	char **map;
 	char *tmp;
+	size_t size;
 
 	line = get_next_line(fd, 0);
+	size = ft_strlen(line);
 	join = ft_strdup("");
 	while (line)
 	{
@@ -54,77 +56,17 @@ char	**get_map(int fd)
 		free(tmp);
 		free(line);
 		line = get_next_line(fd, 0);
+		if (line && !(size == ft_strlen(line) || size - 1 == ft_strlen(line)))
+		{
+			// free(line);
+			// free(join);
+			throw_error("it is not rectangular!\n");
+		}
 	}
 	free(line);
 	map = ft_split(join, '\n');
 	free(join);
 	return (map);
-}
-
-// char	**get_map(int fd, t_map_data *data)
-// {
-// 	char *line;
-// 	char *map;
-// 	char **map_arr;
-// 	char *tmp;
-// 	int P = 0;
-// 	int E = 0;
-// 	int C = 0;
-// 	int line_size;
-// 	data->height = 0;
-
-// 	line = get_next_line(fd, 0);
-// 	line_size = ft_strlen(line);
-// 	is_line_wall(line);
-// 	map = ft_strdup("");
-// 	while (line)
-// 	{
-// 		data->height++;
-// 		is_line_valid(line, line_size); // contains only 1 0 E C P M
-// 		check_element(line, 'P', &P, data);
-// 		check_element(line, 'E', &E, data);
-// 		check_element(line, 'C', &C, data);
-// 	printf(" this is me %d\n\n\n",C);
-// 		tmp = map;
-// 		map = ft_strjoin(map, line);
-// 		free(tmp);
-// 		free(line);
-// 		line = get_next_line(fd, 0);
-// 	}
-// 	if (!(P == 1 && E == 1 && C > 0))
-// 		(free(map), throw_error("unvalid map: p | e | c chi wahed fihum makaynch\n"));
-// 	map_arr = ft_split(map, '\n');
-// 	free(map);
-// 	is_line_wall(map_arr[data->height - 1]);
-// 	data->count = E + C;
-// 	return (map_arr);
-// }
-
-void	check_element(char *line, char c, int *character, t_map_data *data)
-{
-	char *is_exist;
-
-	is_exist = ft_strchr(line, c);
-	if (is_exist)
-	{
-		if (c == 'P' && !(*character))
-		{
-			(*character) = 1;
-			data->x = ft_strchr_index(line, c);
-			data->y = data->height - 1;
-		}
-		else if (c == 'P' && (*character))
-			throw_error("unvalid map: duplicated P\n");
-		if (c == 'E' && !(*character))
-			(*character) = 1;
-		else if (c == 'E' && (*character))
-			throw_error("unvalid map: duplicated E\n");
-		if (c == 'C')
-		{
-			printf("hi i was here\n\n");
-			(*character)++;
-		}
-	}
 }
 
 void	is_line_wall(char *line)
@@ -145,19 +87,19 @@ void	is_line_wall(char *line)
 void	is_line_valid(char *line, int size)
 {
 	int i;
-	char emoji[7] = "10PCEM";
+	char emoji[7] = "10PCE";
 
 	i = 0;
-	if (line[size - 1] == '\n')
-	{
-		if (line[0] != '1' || line[size - 2] != '1' || size != (int)ft_strlen(line))
-			throw_error("unvalid map: had line fiha khalal\n");
-	}
-	else
-	{
-		if (line[0] != '1' || line[size - 1] != '1' || size != (int)ft_strlen(line))
+	// if (line[size - 1] == '\n')
+	// {
+	// 	if (line[0] != '1' || line[size - 2] != '1' || size != (int)ft_strlen(line))
+	// 		throw_error("unvalid map: had line fiha khalal\n");
+	// }
+	// else
+	// {
+		if (size != (int)ft_strlen(line) || line[0] != '1' || line[size - 1] != '1')
 			throw_error("unvalid map 3ndk mochkil\n");
-	}
+	// }
 	while (line[i + 1])
 	{
 		if (!ft_strchr(emoji, line[i]))
@@ -175,15 +117,12 @@ char	*is_map_valid(char *map, t_solong *var)
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		perror_exit("failed to open");
-	// data.m = get_map(fd, &data);
 	data.m = get_map(fd);
 	check_map(&data);
 	var->map = copy_map(data);
 	var->coins = data.count;
 	data.count++;
 	init_player_position(&data);
-	print_map(data.m);
-	// exit(0);
 	if (!recursion(data.m, data.x, data.y, &data.count))
 		return (print_map(data.m), clean_up(data.m), "unvalid path\n");
 	return (clean_up(data.m), NULL);
