@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/04 21:14:16 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/05 00:04:15 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ char	**get_map(int fd)
 		line = get_next_line(fd, 0);
 		if (line && !(size == ft_strlen(line) || size - 1 == ft_strlen(line)))
 		{
-			// free(line);
-			// free(join);
+			free(line);
+			free(join);
 			throw_error("it is not rectangular!\n");
 		}
 	}
@@ -90,16 +90,8 @@ void	is_line_valid(char *line, int size)
 	char emoji[7] = "10PCE";
 
 	i = 0;
-	// if (line[size - 1] == '\n')
-	// {
-	// 	if (line[0] != '1' || line[size - 2] != '1' || size != (int)ft_strlen(line))
-	// 		throw_error("unvalid map: had line fiha khalal\n");
-	// }
-	// else
-	// {
-		if (size != (int)ft_strlen(line) || line[0] != '1' || line[size - 1] != '1')
-			throw_error("unvalid map 3ndk mochkil\n");
-	// }
+	if (size != (int)ft_strlen(line) || line[0] != '1' || line[size - 1] != '1')
+		throw_error("unvalid map 3ndk mochkil\n");
 	while (line[i + 1])
 	{
 		if (!ft_strchr(emoji, line[i]))
@@ -157,8 +149,6 @@ void print_map(char **map)
 		i++;
 	}
 }
-
-// .ber   the name of file should be larger than 4 caract...
 
 void	check_map(t_map_data *data)
 {
@@ -281,11 +271,4 @@ void is_collectible_valid(t_map_data *data)
 	data->count = count;
 }
 
-
-//TODO : is_map_rect------------------------------------------------------>
-//TODO : is_map_surrounded_by_walls--------------------------------------->
-//TODO : check_elements (conatains only 1 0 E P C M)---------------------->
-//TODO : is_player_valid (contains only one P)---------------------------->
-//TODO : is_exit_valid (contains only one E)------------------------------>
-//TODO : is_collectible_valid (contains at least one C)------------------->
 
