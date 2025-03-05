@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 01:23:06 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/05 02:11:21 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
 # include <mlx.h>
 # include <X11/keysym.h>
 # include <stdbool.h>
@@ -123,5 +124,12 @@ void	initialize_data(t_mlx_data *data);
 int		get_map_width(char **map);
 int		get_map_height(char **map);
 void	init_player_exit_position(t_mlx_data *data);
+
+//moves
+void	left(t_mlx_data *data);
+void	right(t_mlx_data *data);
+void	down(t_mlx_data *data);
+void	up(t_mlx_data *data);
+
 
 #endif

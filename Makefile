@@ -8,13 +8,16 @@ SRC		=	src/so_long.c \
 			src/errors.c \
 			src/so_long_utils.c \
 			src/rendring.c \
-			src/initialize.c
+			src/initialize.c \
+			src/check_move.c
 LIBMLX	=	minilibx-linux/libmlx_Linux.a
 LMLX	=	minilibx-linux/libmlx.a
 OBJ		=	${SRC:.c=.o}
 OBJ_B	=	${SRC_B:.c=.o}
 LIBFT_D	=	./libft
 LIBFT	=	libft/libft.a
+PRINTF_D=	./ft_printf
+PRINTF	=	ft_printf/ft_printf.a
 CLEAN	=	clean
 FCLEAN	=	fclean
 
@@ -22,7 +25,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(MAKE) -s -C $(LIBFT_D)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+	@$(MAKE) -s -C $(PRINTF_D)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) $(MLXFLAGS) -o $(NAME)
 	@echo "compiled successfully ✅"
 
 clean:

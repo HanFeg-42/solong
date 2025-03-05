@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:08:58 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 01:35:43 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/05 02:11:34 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,13 @@ void	initialize_data(t_mlx_data *data)
 	data->ey = 0;
 	data->px = 0;
 	data->px = 0;
+}
+
+void	display_moves_nbr(t_mlx_data *data)
+{
+	if (data->old_count != data->count)
+	{
+		ft_printf("Number of moves: %d\n", data->count);
+		data->old_count = data->count;
+	}
 }
