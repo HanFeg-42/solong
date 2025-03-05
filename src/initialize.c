@@ -6,25 +6,25 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:08:58 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 01:09:40 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/05 01:35:43 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-
 int	get_map_height(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
 		i++;
 	return (i);
 }
+
 int	get_map_width(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[0][i])
@@ -32,8 +32,7 @@ int	get_map_width(char **map)
 	return (i);
 }
 
-
-void init_player_exit_position(t_mlx_data *data)
+void	init_player_exit_position(t_mlx_data *data)
 {
 	int (x), (y);
 	y = 0;
@@ -58,7 +57,7 @@ void init_player_exit_position(t_mlx_data *data)
 	}
 }
 
-void initialize_data(t_mlx_data *data)
+void	initialize_data(t_mlx_data *data)
 {
 	data->coins = 0;
 	data->count = 0;

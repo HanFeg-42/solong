@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 00:37:57 by marvin            #+#    #+#             */
-/*   Updated: 2025/02/18 23:37:14 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/05 01:25:02 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-int ft_strchr_index(const char *s, int c)
+int	ft_strchr_index(const char *s, int c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
 	{
 		if (s[i] == c)
-			return i;
+			return (i);
 		i++;
 	}
 	return (-1);

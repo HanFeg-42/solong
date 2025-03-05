@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 09:30:14 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/02/18 23:56:41 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/05 01:33:40 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	throw_error(char *err)
 	ft_putstr_fd(err, 2);
 	exit(EXIT_FAILURE);
 }
+
 void	perror_exit(char *err)
 {
 	perror(err);

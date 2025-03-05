@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 00:53:10 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/05 01:32:37 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	so_long(t_mlx_data *data)
 	if (!data->mlx_ptr)
 		exit(1);
 	data->mlx_win = mlx_new_window(data->mlx_ptr, w * SCALE,
-					h * SCALE, "so_long");
+			h * SCALE, "so_long");
 	if (!data->mlx_win)
 	{
 		mlx_destroy_display(data->mlx_ptr);
@@ -30,7 +30,7 @@ void	so_long(t_mlx_data *data)
 	}
 	loading_images(data);
 	mlx_hook(data->mlx_win, 17, 0, close_window, data);
-    mlx_hook(data->mlx_win, 2, (1L<<0), key_press, data);
+	mlx_hook(data->mlx_win, 2, (1L << 0), key_press, data);
 	mlx_loop_hook(data->mlx_ptr, rendering_to_win, data);
 	mlx_loop(data->mlx_ptr);
 }
@@ -42,7 +42,8 @@ void	loading_images(t_mlx_data *data)
 	data->images[1] = mlx_xpm_file_to_image(data->mlx_ptr, PATH_FLOOR, &w, &h);
 	data->images[2] = mlx_xpm_file_to_image(data->mlx_ptr, PATH_PLAYER, &w, &h);
 	data->images[3] = mlx_xpm_file_to_image(data->mlx_ptr, PATH_EXIT, &w, &h);
-	data->images[4] = mlx_xpm_file_to_image(data->mlx_ptr, PATH_COLLECTIBLE, &w, &h);
+	data->images[4] = mlx_xpm_file_to_image(data->mlx_ptr,
+			PATH_COLLECTIBLE, &w, &h);
 }
 
 int	rendering_to_win(t_mlx_data *data)
@@ -52,13 +53,13 @@ int	rendering_to_win(t_mlx_data *data)
 	return (0);
 }
 
-void render_images(t_mlx_data *data)
+void	render_images(t_mlx_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
-	while(data->map[y])
+	while (data->map[y])
 	{
 		x = 0;
 		while (data->map[y][x])
@@ -74,14 +75,15 @@ void render_images(t_mlx_data *data)
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_solong    var;
-	t_mlx_data data;
+	t_solong	var;
+	t_mlx_data	data;
 
 	if (ac != 2)
 		throw_error("unvalid argument!\n");
-	if ((var.err = is_map_valid(av[1], &var)))
+	var.err = is_map_valid(av[1], &var);
+	if (var.err)
 		throw_error(var.err);
 	printf("\033[32m map is valid congrats! \033[0m\n");
 	initialize_data(&data);
