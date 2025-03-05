@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 02:11:21 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/05 21:53:47 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,30 @@ typedef struct s_mlx_data
 	int		coins;
 	int		count;
 	int		old_count;
+ int height;
+ int width;
 
 }				t_mlx_data;
+
+// typedef struct s_data
+// {
+// 	void	*mlx_ptr;
+// 	void	*mlx_win;
+// 	void	*player;
+// 	void	*coin[5];
+// 	void	*enemy[];
+// 	void	*wall;
+// 	void	*floor;
+// 	void	*exit;
+// 	int		px;
+// 	int		py;
+// 	int		ex;
+// 	int		ey;
+// 	int		mx;
+// 	int		my;
+// 	int		coins;
+// }				t_data;
+
 
 //parsing
 char	*is_map_valid(char *map, t_solong *var);
@@ -82,9 +104,7 @@ void	throw_error(char *err);
 void	perror_exit(char *err);
 void	clean_up(char **str);
 char	*get_next_line(int fd, int f);
-int		recursion(char **map_data, int x, int y, int *count);
-char	**get_map(int fd);
-void	check_element(char *line, char c, int *character, t_map_data *data);
+void	get_map(int fd, t_map_data *data);
 void	is_line_wall(char *line);
 void	is_line_valid(char *line, int size);
 void	check_map(t_map_data *data);
@@ -93,6 +113,7 @@ void	is_player_valid(t_map_data *data);
 void	is_exit_valid(t_map_data *data);
 void	is_collectible_valid(t_map_data *data);
 void	init_player_position(t_map_data *data);
+int		check_path(char **map_data, int x, int y, int *count);
 
 // char	*is_map_valid(char *map);
 void	print_map(char **map);
@@ -130,6 +151,5 @@ void	left(t_mlx_data *data);
 void	right(t_mlx_data *data);
 void	down(t_mlx_data *data);
 void	up(t_mlx_data *data);
-
 
 #endif

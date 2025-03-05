@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 00:54:11 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 01:37:11 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/05 21:32:03 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ren_wall(t_mlx_data *data, int x, int y)
 
 void	ren_floor(t_mlx_data *data, int x, int y)
 {
-	if (data->map[y][x] == '0')
+	if (data->map[y][x] == '0'
+		&& !(x == data->ex && y == data->ey && !data->coins))
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 			data->images[1], SCALE * x, SCALE * y);
 }
@@ -48,7 +49,15 @@ void	ren_player(t_mlx_data *data, int x, int y)
 
 void	ren_coin(t_mlx_data *data, int x, int y)
 {
+	// static int img_indx;
+	// static int dellay;
+	// if (++dellay % 100 == 0)
+	// {
+	// 	if (img_indx == 5)
+	// 	img_indx = 0
+	// }
 	if (data->map[y][x] == 'C')
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 			data->images[4], SCALE * x, SCALE * y);
+	// img_indx++;
 }

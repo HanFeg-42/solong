@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 01:32:37 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:00:40 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	so_long(t_mlx_data *data)
 {
-	int (h), (w);
-	h = get_map_height(data->map);
-	w = get_map_width(data->map);
+	data->height = get_map_height(data->map);
+	data->width = get_map_width(data->map);
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		exit(1);
-	data->mlx_win = mlx_new_window(data->mlx_ptr, w * SCALE,
-			h * SCALE, "so_long");
+	data->mlx_win = mlx_new_window(data->mlx_ptr, data->width * SCALE,
+			data->height * SCALE + 64, "so_long");
 	if (!data->mlx_win)
 	{
 		mlx_destroy_display(data->mlx_ptr);
@@ -48,8 +47,10 @@ void	loading_images(t_mlx_data *data)
 
 int	rendering_to_win(t_mlx_data *data)
 {
+
 	render_images(data);
 	display_moves_nbr(data);
+
 	return (0);
 }
 

@@ -9,7 +9,9 @@ SRC		=	src/so_long.c \
 			src/so_long_utils.c \
 			src/rendring.c \
 			src/initialize.c \
-			src/check_move.c
+			src/check_move.c \
+			src/parse_elements.c \
+			src/parsing_utils.c
 LIBMLX	=	minilibx-linux/libmlx_Linux.a
 LMLX	=	minilibx-linux/libmlx.a
 OBJ		=	${SRC:.c=.o}
