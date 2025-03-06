@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 15:34:43 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:42:01 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,15 @@ void	up(t_mlx_data *data);
 
 //bonus
 void	init0_data(char *arg, t_data *data);
+//rendering
+void	ren_coin_(t_data *data, int x, int y);
+void	ren_player_(t_data *data, int x, int y);
+void	ren_exit_(t_data *data, int x, int y);
+void	ren_floor_(t_data *data, int x, int y);
+void	ren_wall_(t_data *data, int x, int y);
+void	render_images_(t_data *data);
+int	rendering_(t_data *data);
+
 //bonus parsing
 void is_map_valid_(t_data *data);
 void open_map_(t_data *data);
@@ -180,5 +189,20 @@ void	is_enemy_valid_(t_data *data);
 void	clean_and_exit(char **map, char *err);
 void	is_line_wall_(char *line, t_data *data);
 void	check_map_ext_(char *map);
+//movement
+int	is_move_valid_(char *move, t_data *data);
+int	check_exit_(char *move, t_data *data); // le logique doit changer !!!!!!!!!!!!!!!!!!
+int	key_press_(int key, t_data *data);
+void	destroy_images(t_data *data);
+void	exit_game(t_data *data);
+int	close_window_(t_data *data);
+void	left_(t_data *data);
+void	right_(t_data *data);
+void	down_(t_data *data);
+void	up_(t_data *data);
+void	move_player_(char *move, t_data *data);
+
+void	loading_images_(t_data *data);
+void	so_long_(t_data *data);
 
 #endif

@@ -1,0 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_moves.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 01:44:47 by hfegrach          #+#    #+#             */
+/*   Updated: 2025/03/06 16:38:14 by hfegrach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../so_long.h"
+
+void	move_player_(char *move, t_data *data)
+{
+	if (is_move_valid_(move, data))
+	{
+		data->old_moves_count = data->moves_count;
+		++data->moves_count;
+		if (!ft_strncmp(move, "up", 2))
+		{
+			check_exit_(move, data);
+			up_(data);
+		}
+		else if (!ft_strncmp(move, "down", 4))
+		{
+			check_exit_(move, data);
+			down_(data);
+		}
+		else if (!ft_strncmp(move, "right", 4))
+		{
+			check_exit_(move, data);
+			right_(data);
+		}
+		else if (!ft_strncmp(move, "left", 4))
+		{
+			check_exit_(move, data);
+			left_(data);
+		}
+	}
+}
+
+void	up_(t_data *data)
+{
+	data->map[data->py][data->px] = '0';
+	if (data->map[data->py - 1][data->px] == 'C')
+		data->coins--;
+	data->map[data->py - 1][data->px] = 'P';
+	data->py--;
+}
+
+void	down_(t_data *data)
+{
+	data->map[data->py][data->px] = '0';
+	if (data->map[data->py + 1][data->px] == 'C')
+		data->coins--;
+	data->map[data->py + 1][data->px] = 'P';
+	data->py++;
+}
+
+void	right_(t_data *data)
+{
+	data->map[data->py][data->px] = '0';
+	if (data->map[data->py][data->px + 1] == 'C')
+		data->coins--;
+	data->map[data->py][data->px + 1] = 'P';
+	data->px++;
+}
+
+void	left_(t_data *data)
+{
+	data->map[data->py][data->px] = '0';
+	if (data->map[data->py][data->px - 1] == 'C')
+		data->coins--;
+	data->map[data->py][data->px - 1] = 'P';
+	data->px--;
+}
