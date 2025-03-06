@@ -6,13 +6,13 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 20:20:34 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:46:29 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	is_line_wall(char *line)
+void	is_line_wall(char *line, t_map_data *data)
 {
 	int	i;
 
@@ -22,7 +22,10 @@ void	is_line_wall(char *line)
 		if (line[i + 1] == '\0' && line [i] == '\n')
 			break ;
 		if (line[i] != '1')
+		{
+			clean_up(data->m);
 			throw_error("unvalid map : check top and bottom walls\n");
+		}
 		i++;
 	}
 }

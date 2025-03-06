@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 21:53:47 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:54:40 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ typedef struct s_mlx_data
 	int		coins;
 	int		count;
 	int		old_count;
- int height;
- int width;
+	int		height;
+	int		width;
 
 }				t_mlx_data;
 
@@ -83,7 +83,7 @@ typedef struct s_mlx_data
 // 	void	*mlx_win;
 // 	void	*player;
 // 	void	*coin[5];
-// 	void	*enemy[];
+// 	void	*enemy;
 // 	void	*wall;
 // 	void	*floor;
 // 	void	*exit;
@@ -93,7 +93,14 @@ typedef struct s_mlx_data
 // 	int		ey;
 // 	int		mx;
 // 	int		my;
-// 	int		coins;
+// 	int		coins_count;
+// 	int		moves_count;
+// 	int		old_moves_count;
+// 	int		height;
+// 	int		width;
+// 	int		fd;
+// 	char	*map_name;
+// 	char	**map;
 // }				t_data;
 
 
@@ -105,8 +112,8 @@ void	perror_exit(char *err);
 void	clean_up(char **str);
 char	*get_next_line(int fd, int f);
 void	get_map(int fd, t_map_data *data);
-void	is_line_wall(char *line);
-void	is_line_valid(char *line, int size);
+void	is_line_wall(char *line, t_map_data *data);
+void	is_line_valid(t_map_data *data, int index, int size);
 void	check_map(t_map_data *data);
 void	is_map_rect(t_map_data *data);
 void	is_player_valid(t_map_data *data);

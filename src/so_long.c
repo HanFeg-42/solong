@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 22:00:40 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:05:37 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ void	loading_images(t_mlx_data *data)
 
 int	rendering_to_win(t_mlx_data *data)
 {
-
 	render_images(data);
 	display_moves_nbr(data);
-
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:26:12 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 22:13:32 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:26:06 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,25 @@
 
 int main(int ac, char **av)
 {
-    if (ac != 2)
-        return (ft_putstr_fd("Unvalid arguments!", 2), 1);
-    return (0);
+	t_data data;
+
+	if (ac != 2)
+		return (ft_putstr_fd("Unvalid arguments!", 2), 1);
+	init0_data(av[1], &data);
+	if (!is_map_valid_(&data))
+		free_n_exit(&data);
+	so_long_(&data);
+	return (0);
 }
+
+void	init0_data(char *arg, t_data *data)
+{
+	data->map_name = arg;
+}
+
+
+//TODO : 1 - bonus parsing
+//TODO : 2 - render the game
+//TODO : 3 - display moves on window
+//TODO : 4 - coin animation
+//TODO : 5 - handle enemy behavior

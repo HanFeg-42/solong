@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 21:20:53 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:01:55 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	get_map(int fd, t_map_data *data)
 		if (line && !(size == ft_strlen(line) || size - 1 == ft_strlen(line)))
 		{
 			(free(line), free(join));
+			get_next_line(fd, 1);
 			throw_error("it is not rectangular!\n");
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:08:58 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 22:09:50 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:08:18 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	initialize_data(t_mlx_data *data)
 
 void	display_moves_nbr(t_mlx_data *data)
 {
-	char *str =NULL;
-int i =0;
+	char	*str = NULL;
+	int		i = 0;
 	while (i < data->width)
 	{
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,data->images[1], i *64, data->height*64);
