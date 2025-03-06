@@ -1,6 +1,11 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "so_long.h": "c"
+        "so_long.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "format": "c",
+        "initializer_list": "c",
+        "span": "c"
     }
 }

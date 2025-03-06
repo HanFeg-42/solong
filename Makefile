@@ -1,4 +1,5 @@
 NAME	=	so_long
+NAME_B	=	so_long_bonus
 CC		= 	cc -g3 #-fsanitize=address -g3
 CFLAGS	=	-Wall -Wextra -Werror
 MLXFLAGS=   -lmlx -lXext -lX11
@@ -12,6 +13,10 @@ SRC		=	src/so_long.c \
 			src/check_move.c \
 			src/parse_elements.c \
 			src/parsing_utils.c
+SRC_B	=	src_bonus/so_long_bonus.c \
+			src_bonus/parsing.c \
+			src/errors.c \
+			src/get_next_line.c
 LIBMLX	=	minilibx-linux/libmlx_Linux.a
 LMLX	=	minilibx-linux/libmlx.a
 OBJ		=	${SRC:.c=.o}
@@ -30,6 +35,12 @@ $(NAME): $(OBJ)
 	@$(MAKE) -s -C $(PRINTF_D)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) $(MLXFLAGS) -o $(NAME)
 	@echo "compiled successfully ✅"
+
+bonus: $(OBJ_B)
+	@$(MAKE) -s -C $(LIBFT_D)
+	@$(MAKE) -s -C $(PRINTF_D)
+	@$(CC) $(CFLAGS) $(OBJ_B) $(LIBFT) $(PRINTF) $(MLXFLAGS) -o $(NAME_B)
+	@echo "bonus compiled successfully ✅"
 
 clean:
 	@$(MAKE) $(CLEAN) -s -C $(LIBFT_D)

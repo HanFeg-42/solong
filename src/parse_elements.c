@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 19:44:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 12:06:31 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:28:04 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	is_line_valid(t_map_data *data, int index, int size)
 		|| data->m[index][0] != '1' || data->m[index][size - 1] != '1')
 	{
 		clean_up(data->m);
-		throw_error("unvalid map 3ndk mochkil\n");
+		throw_error("unvalid wall\n");
 	}
 	while (data->m[index][i + 1])
 	{
 		if (!ft_strchr(emoji, data->m[index][i]))
 		{
 			clean_up(data->m);
-			throw_error("unvalid map : zdti chi haja\n");
+			throw_error("a character is not in {10PCE}\n");
 		}
 		i++;
 	}

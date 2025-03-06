@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 11:54:40 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:34:43 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,31 +77,33 @@ typedef struct s_mlx_data
 
 }				t_mlx_data;
 
-// typedef struct s_data
-// {
-// 	void	*mlx_ptr;
-// 	void	*mlx_win;
-// 	void	*player;
-// 	void	*coin[5];
-// 	void	*enemy;
-// 	void	*wall;
-// 	void	*floor;
-// 	void	*exit;
-// 	int		px;
-// 	int		py;
-// 	int		ex;
-// 	int		ey;
-// 	int		mx;
-// 	int		my;
-// 	int		coins_count;
-// 	int		moves_count;
-// 	int		old_moves_count;
-// 	int		height;
-// 	int		width;
-// 	int		fd;
-// 	char	*map_name;
-// 	char	**map;
-// }				t_data;
+typedef struct s_data
+{
+	void	*mlx_ptr;
+	void	*mlx_win;
+	void	*player;
+	void	*coin[5];
+	void	*enemy;
+	void	*wall;
+	void	*floor;
+	void	*exit;
+	int		px;
+	int		py;
+	int		ex;
+	int		ey;
+	int		mx;
+	int		my;
+	int		coins_count;
+	int		enemy_count;
+	int		moves_count;
+	int		old_moves_count;
+	size_t	height;
+	size_t	width;
+	int		fd;
+	char	*join;
+	char	*map_name;
+	char	**map;
+}				t_data;
 
 
 //parsing
@@ -158,5 +160,25 @@ void	left(t_mlx_data *data);
 void	right(t_mlx_data *data);
 void	down(t_mlx_data *data);
 void	up(t_mlx_data *data);
+
+//bonus
+void	init0_data(char *arg, t_data *data);
+//bonus parsing
+void is_map_valid_(t_data *data);
+void open_map_(t_data *data);
+void get_map_(t_data *data);
+void	init_player_exit_pos_(t_data *data);
+int	check_path_(char **map_data, int x, int y, int *count);
+char	**copy_map_(t_data data);
+void	not_rectang(t_data *data, char *line);
+void	is_line_valid_(t_data *data, int index, int size);
+void	check_walls_elemt(t_data *data);
+void	is_player_valid_(t_data *data);
+void	is_exit_valid_(t_data *data);
+void	is_collectible_valid_(t_data *data);
+void	is_enemy_valid_(t_data *data);
+void	clean_and_exit(char **map, char *err);
+void	is_line_wall_(char *line, t_data *data);
+void	check_map_ext_(char *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 12:01:55 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:30:10 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*is_map_valid(char *map, t_solong *var)
 	data.count++;
 	init_player_position(&data);
 	if (!check_path(data.m, data.x, data.y, &data.count))
-		return (print_map(data.m), clean_up(data.m), "unvalid path\n");
+		return (clean_up(data.m), "unvalid path\n");
 	return (clean_up(data.m), NULL);
 }
 
