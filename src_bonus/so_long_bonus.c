@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:26:12 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 15:39:03 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:42:53 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int main(int ac, char **av)
 	is_map_valid_(&data);
 	printf("\033[32m map is valid congrats! \033[0m\n");
 	// so_long_(&data);
+	clean_up(data.map);
 	return (0);
 }
 
