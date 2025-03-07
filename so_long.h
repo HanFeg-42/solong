@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 02:23:07 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 03:48:37 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ void	is_line_wall_(char *line, t_data *data);
 void	check_map_ext_(char *map);
 //movement
 int	is_move_valid_(char *move, t_data *data);
-int	check_exit_(char *move, t_data *data); // le logique doit changer !!!!!!!!!!!!!!!!!!
+int	check_exit_(int x, int y, t_data *data); // le logique doit changer !!!!!!!!!!!!!!!!!!
 int	key_press_(int key, t_data *data);
 void	destroy_images(t_data *data);
 void	exit_game(t_data *data);

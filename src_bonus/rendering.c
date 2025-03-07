@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:40:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 02:49:27 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 04:04:38 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	display_moves_nbr_(t_data *data)
 	}
 	if (data->old_moves_count != data->moves_count)
 	{
-		ft_printf("Number of moves: %d\n", data->moves_count);
+		// ft_printf("Number of moves: %d\n", data->moves_count);
 		data->old_moves_count = data->moves_count;
 	}
 	str = ft_itoa(data->moves_count);
