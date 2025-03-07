@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 16:42:14 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 01:43:29 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	destroy_images(t_data *data)
 
 int	key_press_(int key, t_data *data)
 {
-	int	i;
-
 	if (key == XK_Escape)
 	{
 		ft_printf("you pressed ESC\n");

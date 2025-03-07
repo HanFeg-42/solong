@@ -1,6 +1,6 @@
 NAME	=	so_long
 NAME_B	=	so_long_bonus
-CC		= 	cc -g3 #-fsanitize=address -g3
+CC		= 	cc -g #-fsanitize=address -g3
 CFLAGS	=	-Wall -Wextra -Werror
 MLXFLAGS=   -lmlx -lXext -lX11
 SRC		=	src/so_long.c \
@@ -16,7 +16,11 @@ SRC		=	src/so_long.c \
 SRC_B	=	src_bonus/so_long_bonus.c \
 			src_bonus/parsing.c \
 			src/errors.c \
-			src/get_next_line.c
+			src/get_next_line.c \
+			src_bonus/so_long_utils.c \
+			src_bonus/check_moves.c \
+			src_bonus/rendering.c
+
 LIBMLX	=	minilibx-linux/libmlx_Linux.a
 LMLX	=	minilibx-linux/libmlx.a
 OBJ		=	${SRC:.c=.o}

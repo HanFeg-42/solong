@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 16:42:01 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 01:44:40 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,8 +169,10 @@ void	ren_player_(t_data *data, int x, int y);
 void	ren_exit_(t_data *data, int x, int y);
 void	ren_floor_(t_data *data, int x, int y);
 void	ren_wall_(t_data *data, int x, int y);
+void	ren_enemy_(t_data *data, int x, int y);
 void	render_images_(t_data *data);
 int	rendering_(t_data *data);
+void	display_moves_nbr_(t_data *data);
 
 //bonus parsing
 void is_map_valid_(t_data *data);

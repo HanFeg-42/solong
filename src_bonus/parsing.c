@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 15:34:11 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 01:37:31 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void get_map_(t_data *data)
 	}
 	free(line);
 	data->map = ft_split(data->join, '\n');
+	data->width--;
 	free(data->join);
 }
 

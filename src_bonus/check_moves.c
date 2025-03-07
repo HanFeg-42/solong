@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:44:47 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 16:38:14 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 01:04:00 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	up_(t_data *data)
 {
 	data->map[data->py][data->px] = '0';
 	if (data->map[data->py - 1][data->px] == 'C')
-		data->coins--;
+		data->coins_count--;
 	data->map[data->py - 1][data->px] = 'P';
 	data->py--;
 }
@@ -54,7 +54,7 @@ void	down_(t_data *data)
 {
 	data->map[data->py][data->px] = '0';
 	if (data->map[data->py + 1][data->px] == 'C')
-		data->coins--;
+		data->coins_count--;
 	data->map[data->py + 1][data->px] = 'P';
 	data->py++;
 }
@@ -63,7 +63,7 @@ void	right_(t_data *data)
 {
 	data->map[data->py][data->px] = '0';
 	if (data->map[data->py][data->px + 1] == 'C')
-		data->coins--;
+		data->coins_count--;
 	data->map[data->py][data->px + 1] = 'P';
 	data->px++;
 }
@@ -72,7 +72,7 @@ void	left_(t_data *data)
 {
 	data->map[data->py][data->px] = '0';
 	if (data->map[data->py][data->px - 1] == 'C')
-		data->coins--;
+		data->coins_count--;
 	data->map[data->py][data->px - 1] = 'P';
 	data->px--;
 }
