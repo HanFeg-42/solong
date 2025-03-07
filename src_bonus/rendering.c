@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:40:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 04:04:38 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 04:21:44 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,15 @@ void	ren_player_(t_data *data, int x, int y)
 void	ren_coin_(t_data *data, int x, int y)
 {
 	static int img_indx;
-	// static int dellay;
+	int i;
 
-	// if (++dellay % 100 == 0)
-	// {
-		if (img_indx == 5)
-			img_indx = 0;
-	// }
+	if (img_indx == 5)
+		img_indx = 0;
 	if (data->map[y][x] == 'C')
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 			data->coin[img_indx], SCALE * x, SCALE * y);
 	img_indx++;
+	i = 0;
+	while (i < 99999)
+	    i++;
 }

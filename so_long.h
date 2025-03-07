@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 03:48:37 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 04:17:17 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ARROW_D 65364
 # define ARROW_R 65363
 # define ARROW_L 65361
+# define RANDOM 9999
 
 //struct
 typedef struct s_solong

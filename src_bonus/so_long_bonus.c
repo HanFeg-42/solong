@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:26:12 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 02:38:04 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 04:06:15 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	init0_data(char *arg, t_data *data)
 
 
 //TODO : 1 - bonus parsing -----------------------> DONE
-//TODO : 2 - render the game
-//TODO : 3 - display moves on window
-//TODO : 4 - coin animation
-//TODO : 5 - handle enemy behavior
+//TODO : 2 - render the game ---------------------> DONE
+//TODO : 3 - display moves on window -------------> DONE
+//TODO : 4 - coin animation ---------------------->
+//TODO : 5 - handle enemy behavior ---------------> DONE
