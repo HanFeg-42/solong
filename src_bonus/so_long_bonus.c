@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:26:12 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 04:06:15 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:04:38 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ void	loading_images_(t_data *data)
 	data->wall = mlx_xpm_file_to_image(data->mlx_ptr, "textures/wallG.xpm", &w, &h);
 	data->floor = mlx_xpm_file_to_image(data->mlx_ptr, "textures/green0.xpm", &w, &h);
 	data->exit = mlx_xpm_file_to_image(data->mlx_ptr, "textures/exitG.xpm", &w, &h);
-	data->coin[0] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/coin/9.xpm", &w, &h);
+	data->coin[0] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/coin/8.xpm", &w, &h);
+	// data->coin[1] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/coin/9.xpm", &w, &h);
 	data->coin[1] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/coin/10.xpm", &w, &h);
 	data->coin[2] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/coin/11.xpm", &w, &h);
 	data->coin[3] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/coin/12.xpm", &w, &h);
-	data->coin[4] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/coin/13.xpm", &w, &h);
+	// data->coin[5] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/coin/13.xpm", &w, &h);
+	data->coin[4] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/coin/2.xpm", &w, &h);
 	data->enemy[0] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/fire/1.xpm", &w, &h);
 	data->enemy[1] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/fire/2.xpm", &w, &h);
 	data->enemy[2] = mlx_xpm_file_to_image(data->mlx_ptr, "textures/fire/3.xpm", &w, &h);

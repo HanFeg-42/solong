@@ -19,7 +19,10 @@ SRC_B	=	src_bonus/so_long_bonus.c \
 			src/get_next_line.c \
 			src_bonus/so_long_utils.c \
 			src_bonus/check_moves.c \
-			src_bonus/rendering.c
+			src_bonus/rendering.c \
+			src_bonus/rendering2.c \
+			src_bonus/parse_map_elem.c \
+			src_bonus/parsing_utils.c
 
 LIBMLX	=	minilibx-linux/libmlx_Linux.a
 LMLX	=	minilibx-linux/libmlx.a

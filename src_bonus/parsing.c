@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 01:37:31 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:21:54 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,6 @@ void	is_map_valid_(t_data *data)
 	clean_up(tmp_map);
 }
 
-void	init_player_exit_pos_(t_data *data)
-{
-	int (x), (y);
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == 'P')
-			{
-				data->px = x;
-				data->py = y;
-			}
-			if (data->map[y][x] == 'E')
-			{
-				data->ex = x;
-				data->ey = y;
-			}
-			x++;
-		}
-		y++;
-	}
-}
 
 int	check_path_(char **map_data, int x, int y, int *count)
 {
@@ -76,23 +52,6 @@ int	check_path_(char **map_data, int x, int y, int *count)
 	return (true);
 }
 
-char	**copy_map_(t_data data)
-{
-	char	**ret;
-	int		i;
-
-	ret = malloc(sizeof(char *) * (data.height + 1));
-	if (!ret)
-		return (NULL);
-	i = 0;
-	while (data.map[i])
-	{
-		ret[i] = ft_strdup(data.map[i]);
-		i++;
-	}
-	ret[i] = NULL;
-	return (ret);
-}
 void open_map_(t_data *data)
 {
 	check_map_ext_(data->map_name);
@@ -124,176 +83,6 @@ void get_map_(t_data *data)
 	data->map = ft_split(data->join, '\n');
 	data->width--;
 	free(data->join);
-}
-
-void	not_rectang(t_data *data, char *line)
-{
-	free(line);
-	free(data->join);
-	get_next_line(data->fd, 1);
-	throw_error("it is not rectangular!\n");
-}
-
-void	is_line_valid_(t_data *data, int index, int size)
-{
-	int		i;
-	char	*emoji;
-
-	emoji = "10PCEM";
-	i = 0;
-	if (size != (int)ft_strlen(data->map[index])
-		|| data->map[index][0] != '1' || data->map[index][size - 1] != '1')
-		clean_and_exit(data->map, "unvalid wall\n");
-	while (data->map[index][i + 1])
-	{
-		if (!ft_strchr(emoji, data->map[index][i]))
-			clean_and_exit(data->map, "a character is not in {10PCEM}\n");
-		i++;
-	}
-}
-
-void	check_walls_elemt(t_data *data)
-{
-	int		i;
-	size_t	size;
-
-	size = ft_strlen(data->map[0]);
-	is_line_wall_(data->map[0], data);
-	i = 1;
-	while (data->map[i])
-	{
-		is_line_valid_(data, i, size);
-		i++;
-	}
-	data->height = i;
-	is_line_wall_(data->map[i - 1], data);
-}
-
-void	is_player_valid_(t_data *data)
-{
-	int	x;
-	int	y;
-	int	check;
-
-	check = true;
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == 'P' && check)
-				check = false;
-			else if (data->map[y][x] == 'P' && !check)
-				clean_and_exit(data->map, "player duplicated\n");
-			x++;
-		}
-		y++;
-	}
-	if (check)
-		clean_and_exit(data->map, "No player detected\n");
-}
-
-void	is_exit_valid_(t_data *data)
-{
-	int	x;
-	int	y;
-	int	check;
-
-	check = true;
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == 'E' && check)
-				check = false;
-			else if (data->map[y][x] == 'E' && !check)
-				clean_and_exit(data->map, "exit duplicated\n");
-			x++;
-		}
-		y++;
-	}
-	if (check)
-		clean_and_exit(data->map, "No exit detected\n");
-}
-
-void	is_collectible_valid_(t_data *data)
-{
-	int	x;
-	int	y;
-	int	check;
-
-	check = true;
-	data->coins_count = 0;
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == 'C')
-			{
-				check = false;
-				data->coins_count++;
-			}
-			x++;
-		}
-		y++;
-	}
-	if (check)
-		clean_and_exit(data->map, "No coins detected\n");
-}
-void	is_enemy_valid_(t_data *data)
-{
-	int	x;
-	int	y;
-	int	check;
-
-	check = true;
-	data->enemy_count = 0;
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == 'M')
-			{
-				check = false;
-				data->enemy_count++;
-			}
-			x++;
-		}
-		y++;
-	}
-	if (check)
-		clean_and_exit(data->map, "No enemy detected\n");
-}
-
-void	is_line_wall_(char *line, t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i + 1] == '\0' && line [i] == '\n')
-			break ;
-		if (line[i] != '1')
-		{
-			clean_up(data->map);
-			throw_error("unvalid map : check top and bottom walls\n");
-		}
-		i++;
-	}
-}
-
-void	clean_and_exit(char **map, char *err)
-{
-	clean_up(map);
-	throw_error(err);
 }
 
 void	check_map_ext_(char *map)
