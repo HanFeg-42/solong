@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:40:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 01:43:40 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 02:49:27 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,14 @@ void	ren_wall_(t_data *data, int x, int y)
 }
 void	ren_enemy_(t_data *data, int x, int y)
 {
+	static int fire_index;
+
+	if (fire_index == 5)
+		fire_index = 0;
 	if (data->map[y][x] == 'M')
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
-			data->enemy, SCALE * x, SCALE * y);
+			data->enemy[fire_index], SCALE * x, SCALE * y);
+	fire_index++;
 }
 void	ren_floor_(t_data *data, int x, int y)
 {

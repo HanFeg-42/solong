@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 01:43:29 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 03:00:57 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ void	destroy_images(t_data *data)
 	int	i;
 
 	mlx_destroy_image(data->mlx_ptr, data->player);
-	mlx_destroy_image(data->mlx_ptr, data->enemy);
 	mlx_destroy_image(data->mlx_ptr, data->exit);
 	mlx_destroy_image(data->mlx_ptr, data->floor);
 	mlx_destroy_image(data->mlx_ptr, data->wall);
 	i = 0;
 	while (i < 5)
 		mlx_destroy_image(data->mlx_ptr, data->coin[i++]);
+	i = 0;
+	while (i < 5)
+		mlx_destroy_image(data->mlx_ptr, data->enemy[i++]);
 }
 
 int	key_press_(int key, t_data *data)
@@ -62,19 +64,19 @@ int	key_press_(int key, t_data *data)
 
 int	check_exit_(char *move, t_data *data) // le logique doit changer !!!!!!!!!!!!!!!!!!
 {
-	if (!ft_strncmp(move, "up", 2) && data->map[data->py - 1][data->px] != 'E'
+	if (!ft_strncmp(move, "up", 2) && data->map[data->py - 1][data->px] != 'E' && data->map[data->py - 1][data->px] != 'M'
 		&& !(data->px == data->ex && data->py - 1 == data->ey && !data->coins_count))
 		return (0);
 	else if (!ft_strncmp(move, "down", 4)
-		&& data->map[data->py + 1][data->px] != 'E'
+		&& data->map[data->py + 1][data->px] != 'E' && data->map[data->py + 1][data->px] != 'M'
 		&& !(data->px == data->ex && data->py + 1 == data->ey && !data->coins_count))
 		return (0);
 	else if (!ft_strncmp(move, "right", 4)
-		&& data->map[data->py][data->px + 1] != 'E'
+		&& data->map[data->py][data->px + 1] != 'E' && data->map[data->py][data->px + 1] != 'M'
 		&& !(data->px + 1 == data->ex && data->py == data->ey && !data->coins_count))
 		return (0);
 	else if (!ft_strncmp(move, "left", 4)
-		&& data->map[data->py][data->px - 1] != 'E'
+		&& data->map[data->py][data->px - 1] != 'E' && data->map[data->py][data->px - 1] != 'M'
 		&& !(data->px - 1 == data->ex && data->py == data->ey && !data->coins_count))
 		return (0);
 	if (!data->coins_count)
@@ -82,8 +84,14 @@ int	check_exit_(char *move, t_data *data) // le logique doit changer !!!!!!!!!!!
 		ft_printf("you WIN\n");
 		exit_game(data);
 	}
+	else
+	{
+		ft_printf("you LOST\n");
+		exit_game(data);
+	}
 	return (1);
 }
+
 
 int	is_move_valid_(char *move, t_data *data)
 {

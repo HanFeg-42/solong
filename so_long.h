@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 01:44:40 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 02:23:07 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_data
 	void	*mlx_win;
 	void	*player;
 	void	*coin[5];
-	void	*enemy;
+	void	*enemy[5];
 	void	*wall;
 	void	*floor;
 	void	*exit;
