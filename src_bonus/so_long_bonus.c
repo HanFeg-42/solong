@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:26:12 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/08 00:13:29 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/08 03:33:52 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ void	so_long_(t_data *data)
 void	loading_images_(t_data *data)
 {
 	int (w), (h);
-	data->player = mlx_xpm_file_to_image(data->mlx_ptr, P_PATH, &w, &h);
+	data->player[0] = mlx_xpm_file_to_image(data->mlx_ptr, P1_PATH, &w, &h);
+	data->player[1] = mlx_xpm_file_to_image(data->mlx_ptr, P2_PATH, &w, &h);
+	data->player[2] = mlx_xpm_file_to_image(data->mlx_ptr, P3_PATH, &w, &h);
+	data->player[3] = mlx_xpm_file_to_image(data->mlx_ptr, P4_PATH, &w, &h);
+	data->player[4] = mlx_xpm_file_to_image(data->mlx_ptr, P5_PATH, &w, &h);
 	data->wall = mlx_xpm_file_to_image(data->mlx_ptr, W_PATH, &w, &h);
 	data->floor = mlx_xpm_file_to_image(data->mlx_ptr, F_PATH, &w, &h);
 	data->exit = mlx_xpm_file_to_image(data->mlx_ptr, E_PATH, &w, &h);

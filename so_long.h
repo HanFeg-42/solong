@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 23:41:56 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/08 03:32:47 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@
 # define PATH_PLAYER "textures/player1.xpm"
 # define PATH_EXIT "textures/exit1.xpm"
 # define PATH_COLLECTIBLE "textures/collectible1.xpm"
-# define P_PATH "textures/playerG.xpm"
+# define P1_PATH "textures/player/1.xpm"
+# define P2_PATH "textures/player/2.xpm"
+# define P3_PATH "textures/player/3.xpm"
+# define P4_PATH "textures/player/4.xpm"
+# define P5_PATH "textures/player/5.xpm"
 # define W_PATH "textures/wallG.xpm"
 # define E_PATH "textures/exitG.xpm"
 # define F_PATH "textures/green0.xpm"
@@ -96,7 +100,8 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*mlx_win;
-	void	*player;
+	void	*player[5];
+	void	*player0;//not used
 	void	*coin[5];
 	void	*enemy[5];
 	void	*wall;

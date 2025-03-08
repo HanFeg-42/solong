@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:40:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/08 03:06:53 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/08 03:20:32 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,12 @@ void move_enemy(t_data *data)
 					data->map[y][x] = '0';
 					data->map[y][x + dir] = 'M';
 					x+=2;
-					continue;
 				}
 				else if (dir == -1 && data->map[y][x + dir] == '0')
 				{
 					data->map[y][x] = '0';
 					data->map[y][x + dir] = 'M';
 					x++;
-					continue;
 				}
 				else
 					dir = dir * (-1);
@@ -49,10 +47,9 @@ void move_enemy(t_data *data)
 int	rendering_(t_data *data)
 {
 	static int dellay;
-		if (++dellay %100 == 0)
-	{
+
+	if (++dellay % 100 == 0)
 		move_enemy(data);
-	}
 	render_images_(data);
 	display_moves_nbr_(data);
 	return (0);
@@ -62,7 +59,6 @@ void	render_images_(t_data *data)
 {
 	int	x;
 	int	y;
-	// int	i;
 
 	y = 0;
 	while (data->map[y])
@@ -77,9 +73,6 @@ void	render_images_(t_data *data)
 			ren_enemy_(data, x, y);
 			ren_coin_(data, x, y);
 			x++;
-			// i = 0;
-			// while (i < RANDOM)
-			// 	i++;
 		}
 		y++;
 	}

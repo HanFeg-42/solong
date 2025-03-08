@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:32:37 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/08 00:09:38 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/08 03:34:19 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,14 @@ void	ren_exit_(t_data *data, int x, int y)
 
 void	ren_player_(t_data *data, int x, int y)
 {
+	static int	p_index;
+
+	if (p_index == 5)
+		p_index = 0;
 	if (data->map[y][x] == 'P')
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
-			data->player, SCALE * x, SCALE * y);
+			data->player[p_index], SCALE * x, SCALE * y);
+	p_index++;
 }
 
 void	ren_coin_(t_data *data, int x, int y)
@@ -57,13 +62,11 @@ void	ren_coin_(t_data *data, int x, int y)
 	static int	img_indx;
 	static int	dellay;
 
-		if (img_indx == 5)
-			img_indx = 0;
+	if (img_indx == 5)
+		img_indx = 0;
 	if (data->map[y][x] == 'C')
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 			data->coin[img_indx], SCALE * x, SCALE * y);
-	if (++dellay %10000 == 0)
-	{
+	if (++dellay % 10000 == 0)
 		img_indx++;
-	}
 }
