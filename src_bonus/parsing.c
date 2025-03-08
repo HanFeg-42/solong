@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 17:21:54 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/08 02:54:08 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	is_map_valid_(t_data *data)
 	clean_up(tmp_map);
 }
 
-
 int	check_path_(char **map_data, int x, int y, int *count)
 {
 	if (map_data[y][x] == '1' || map_data[y][x] == 'M' || !(*count))
@@ -52,15 +51,15 @@ int	check_path_(char **map_data, int x, int y, int *count)
 	return (true);
 }
 
-void open_map_(t_data *data)
+void	open_map_(t_data *data)
 {
 	check_map_ext_(data->map_name);
 	data->fd = open(data->map_name, O_RDONLY);
 	if (data->fd < 0)
-		perror_exit("failed to open");
+		throw_error("failed to open");
 }
 
-void get_map_(t_data *data)
+void	get_map_(t_data *data)
 {
 	char	*line;
 	char	*tmp;
@@ -76,7 +75,8 @@ void get_map_(t_data *data)
 		free(tmp);
 		free(line);
 		line = get_next_line(data->fd, 0);
-		if (line && !(data->width == ft_strlen(line) || data->width - 1 == ft_strlen(line)))
+		if (line && !(data->width == ft_strlen(line)
+				|| data->width - 1 == ft_strlen(line)))
 			not_rectang(data, line);
 	}
 	free(line);
@@ -95,3 +95,4 @@ void	check_map_ext_(char *map)
 	if (!(ext && ft_strlen(ext) == 4 && size > 4))
 		throw_error("unvalid map extension!\n");
 }
+//enemy

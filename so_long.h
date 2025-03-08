@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 17:04:52 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:41:56 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,25 @@
 # define PATH_PLAYER "textures/player1.xpm"
 # define PATH_EXIT "textures/exit1.xpm"
 # define PATH_COLLECTIBLE "textures/collectible1.xpm"
+# define P_PATH "textures/playerG.xpm"
+# define W_PATH "textures/wallG.xpm"
+# define E_PATH "textures/exitG.xpm"
+# define F_PATH "textures/green0.xpm"
+# define C1_PATH "textures/coin/8.xpm"
+# define C2_PATH "textures/coin/10.xpm"
+# define C3_PATH "textures/coin/11.xpm"
+# define C4_PATH "textures/coin/12.xpm"
+# define C5_PATH "textures/coin/2.xpm"
+# define M1_PATH "textures/fire/1.xpm"
+# define M2_PATH "textures/fire/2.xpm"
+# define M3_PATH "textures/fire/3.xpm"
+# define M4_PATH "textures/fire/4.xpm"
+# define M5_PATH "textures/fire/5.xpm"
 # define ARROW_U 65362
 # define ARROW_D 65364
 # define ARROW_R 65363
 # define ARROW_L 65361
-# define RANDOM 15000
+# define RANDOM 999999
 
 //struct
 typedef struct s_solong
@@ -106,7 +120,6 @@ typedef struct s_data
 	char	**map;
 }				t_data;
 
-
 //parsing
 char	*is_map_valid(char *map, t_solong *var);
 void	check_map_ext(char *map);
@@ -172,15 +185,15 @@ void	ren_floor_(t_data *data, int x, int y);
 void	ren_wall_(t_data *data, int x, int y);
 void	ren_enemy_(t_data *data, int x, int y);
 void	render_images_(t_data *data);
-int	rendering_(t_data *data);
+int		rendering_(t_data *data);
 void	display_moves_nbr_(t_data *data);
 
 //bonus parsing
-void is_map_valid_(t_data *data);
-void open_map_(t_data *data);
-void get_map_(t_data *data);
+void	is_map_valid_(t_data *data);
+void	open_map_(t_data *data);
+void	get_map_(t_data *data);
 void	init_player_exit_pos_(t_data *data);
-int	check_path_(char **map_data, int x, int y, int *count);
+int		check_path_(char **map_data, int x, int y, int *count);
 char	**copy_map_(t_data data);
 void	not_rectang(t_data *data, char *line);
 void	is_line_valid_(t_data *data, int index, int size);
@@ -193,18 +206,17 @@ void	clean_and_exit(char **map, char *err);
 void	is_line_wall_(char *line, t_data *data);
 void	check_map_ext_(char *map);
 //movement
-int	is_move_valid_(char *move, t_data *data);
-int	check_exit_(int x, int y, t_data *data); // le logique doit changer !!!!!!!!!!!!!!!!!!
-int	key_press_(int key, t_data *data);
+int		is_move_valid_(char *move, t_data *data);
+int		check_exit_(int x, int y, t_data *data);
+int		key_press_(int key, t_data *data);
 void	destroy_images(t_data *data);
 void	exit_game(t_data *data);
-int	close_window_(t_data *data);
+int		close_window_(t_data *data);
 void	left_(t_data *data);
 void	right_(t_data *data);
 void	down_(t_data *data);
 void	up_(t_data *data);
 void	move_player_(char *move, t_data *data);
-
 void	loading_images_(t_data *data);
 void	so_long_(t_data *data);
 

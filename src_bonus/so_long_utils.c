@@ -6,12 +6,11 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 17:40:06 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:29:35 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
 
 int	key_press_(int key, t_data *data)
 {
@@ -31,11 +30,11 @@ int	key_press_(int key, t_data *data)
 	return (0);
 }
 
-int	check_exit_(int y, int x, t_data *data) // le logique doit changer !!!!!!!!!!!!!!!!!!
+int	check_exit_(int y, int x, t_data *data)
 {
 	if (data->map[y][x] != 'E' && data->map[y][x] != 'M'
 		&& !(data->ex == x && data->ey == y && !data->coins_count))
-        return (0);
+		return (0);
 	if (data->ex == x && data->ey == y && !data->coins_count)
 	{
 		ft_printf("you WIN\n");
@@ -48,7 +47,6 @@ int	check_exit_(int y, int x, t_data *data) // le logique doit changer !!!!!!!!!
 	}
 	return (1);
 }
-
 
 int	is_move_valid_(char *move, t_data *data)
 {
@@ -64,21 +62,6 @@ int	is_move_valid_(char *move, t_data *data)
 		&& data->map[data->py][data->px - 1] == '1')
 		return (0);
 	return (1);
-}
-void	destroy_images(t_data *data)
-{
-	int	i;
-
-	mlx_destroy_image(data->mlx_ptr, data->player);
-	mlx_destroy_image(data->mlx_ptr, data->exit);
-	mlx_destroy_image(data->mlx_ptr, data->floor);
-	mlx_destroy_image(data->mlx_ptr, data->wall);
-	i = 0;
-	while (i < 5)
-		mlx_destroy_image(data->mlx_ptr, data->coin[i++]);
-	i = 0;
-	while (i < 5)
-		mlx_destroy_image(data->mlx_ptr, data->enemy[i++]);
 }
 
 int	close_window_(t_data *data)

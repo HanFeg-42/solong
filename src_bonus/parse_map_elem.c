@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:26:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 17:26:32 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:20:18 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	is_collectible_valid_(t_data *data)
 	if (check)
 		clean_and_exit(data->map, "No coins detected\n");
 }
+
 void	is_enemy_valid_(t_data *data)
 {
 	int	x;

@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 14:30:10 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:26:01 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*is_map_valid(char *map, t_solong *var)
 	check_map_ext(map);
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		perror_exit("failed to open");
+		throw_error("failed to open");
 	get_map(fd, &data);
 	check_map(&data);
 	var->map = copy_map(data);

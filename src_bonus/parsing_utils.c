@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 17:28:31 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/07 23:08:51 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,7 @@ void	is_line_wall_(char *line, t_data *data)
 		if (line[i + 1] == '\0' && line [i] == '\n')
 			break ;
 		if (line[i] != '1')
-            clean_and_exit(data->map, "unvalid map : check top and bottom walls\n");
+			clean_and_exit(data->map, "unvalid map!\n");
 		i++;
 	}
 }
-
