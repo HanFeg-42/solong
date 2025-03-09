@@ -1,6 +1,6 @@
 NAME	=	so_long
 NAME_B	=	so_long_bonus
-CC		= 	cc -fsanitize=address -g3
+CC		= 	cc -g #-fsanitize=address -g3
 CFLAGS	=	-Wall -Wextra -Werror
 MLXFLAGS=   -lmlx -lXext -lX11
 SRC		=	src/so_long.c \

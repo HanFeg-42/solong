@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:44:47 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 23:12:02 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 02:58:39 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ void	move_player_(char *move, t_data *data)
 
 void	up_(t_data *data)
 {
+	int (w), (h);
+	mlx_destroy_image(data->mlx_ptr, data->player);
+	data->player = mlx_xpm_file_to_image(data->mlx_ptr, PU_PATH, &w, &h);
 	data->map[data->py][data->px] = '0';
 	if (data->map[data->py - 1][data->px] == 'C')
 		data->coins_count--;
@@ -52,6 +55,9 @@ void	up_(t_data *data)
 
 void	down_(t_data *data)
 {
+	int (w), (h);
+	mlx_destroy_image(data->mlx_ptr, data->player);
+	data->player = mlx_xpm_file_to_image(data->mlx_ptr, PD_PATH, &w, &h);
 	data->map[data->py][data->px] = '0';
 	if (data->map[data->py + 1][data->px] == 'C')
 		data->coins_count--;
@@ -61,6 +67,9 @@ void	down_(t_data *data)
 
 void	right_(t_data *data)
 {
+	int (w), (h);
+	mlx_destroy_image(data->mlx_ptr, data->player);
+	data->player = mlx_xpm_file_to_image(data->mlx_ptr, PR_PATH, &w, &h);
 	data->map[data->py][data->px] = '0';
 	if (data->map[data->py][data->px + 1] == 'C')
 		data->coins_count--;
@@ -70,6 +79,9 @@ void	right_(t_data *data)
 
 void	left_(t_data *data)
 {
+	int (w), (h);
+	mlx_destroy_image(data->mlx_ptr, data->player);
+	data->player = mlx_xpm_file_to_image(data->mlx_ptr, PL_PATH, &w, &h);
 	data->map[data->py][data->px] = '0';
 	if (data->map[data->py][data->px - 1] == 'C')
 		data->coins_count--;

@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:08:58 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 22:49:42 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 02:10:33 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,12 @@ void	initialize_data(t_mlx_data *data)
 void	display_moves_nbr(t_mlx_data *data)
 {
 	char	*str;
-	int		i;
 
 	str = NULL;
-	i = 0;
-	while (i < data->width)
-	{
-		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->images[1],
-			i * SCALE, data->height * SCALE);
-		i++;
-	}
 	if (data->old_count != data->count)
 	{
 		ft_printf("Number of moves: %d\n", data->count);
 		data->old_count = data->count;
 	}
-	str = ft_itoa(data->count);
-	mlx_set_font(data->mlx_ptr, data->mlx_win, "9x15");
-	mlx_string_put(data->mlx_ptr, data->mlx_win, 12,
-		data->height * SCALE + 32, 0x000000, "Number of moves :");
-	mlx_string_put(data->mlx_ptr, data->mlx_win, SCALE * 3 - 20,
-		data->height * SCALE + 32, 0x000000, str);
-	free(str);
+
 }

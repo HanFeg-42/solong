@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/08 03:32:47 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 02:42:46 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 # define PATH_PLAYER "textures/player1.xpm"
 # define PATH_EXIT "textures/exit1.xpm"
 # define PATH_COLLECTIBLE "textures/collectible1.xpm"
-# define P1_PATH "textures/player/1.xpm"
-# define P2_PATH "textures/player/2.xpm"
-# define P3_PATH "textures/player/3.xpm"
-# define P4_PATH "textures/player/4.xpm"
-# define P5_PATH "textures/player/5.xpm"
+# define P_PATH "textures/pplayer.xpm"
+# define PU_PATH "textures/player/up.xpm"
+# define PD_PATH "textures/player/down.xpm"
+# define PR_PATH "textures/player/right.xpm"
+# define PL_PATH "textures/player/left.xpm"
 # define W_PATH "textures/wallG.xpm"
 # define E_PATH "textures/exitG.xpm"
 # define F_PATH "textures/green0.xpm"
@@ -100,8 +100,7 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*mlx_win;
-	void	*player[5];
-	void	*player0;//not used
+	void	*player;
 	void	*coin[5];
 	void	*enemy[5];
 	void	*wall;
@@ -224,5 +223,6 @@ void	up_(t_data *data);
 void	move_player_(char *move, t_data *data);
 void	loading_images_(t_data *data);
 void	so_long_(t_data *data);
+int		is_enemy_move_valid(t_data *data, int y, int x, int dir);
 
 #endif

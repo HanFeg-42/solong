@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/06 12:05:37 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 02:09:38 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	so_long(t_mlx_data *data)
 	if (!data->mlx_ptr)
 		exit(1);
 	data->mlx_win = mlx_new_window(data->mlx_ptr, data->width * SCALE,
-			data->height * SCALE + 64, "so_long");
+			data->height * SCALE, "so_long");
 	if (!data->mlx_win)
 	{
 		mlx_destroy_display(data->mlx_ptr);

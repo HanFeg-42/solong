@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/08 03:37:19 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 02:12:19 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	is_map_valid_(t_data *data)
 	is_player_valid_(data);
 	is_collectible_valid_(data);
 	is_exit_valid_(data);
-	is_enemy_valid_(data);
+	// is_enemy_valid_(data);
 	tmp_map = copy_map_(*data);
 	init_player_exit_pos_(data);
 	count = data->coins_count + 1;

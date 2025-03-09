@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:40:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/08 03:20:32 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 01:18:07 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void move_enemy(t_data *data)
 {
-	int x, y;
+	int x;
+	int y;
 	static int dir = -1;// 1 limn || -1 => lisr
+
 	y = 0;
 	while(data->map[y])
 	{
@@ -24,13 +26,13 @@ void move_enemy(t_data *data)
 		{
 			if (data->map[y][x] == 'M')
 			{
-				if (dir ==  1 && data->map[y][x + dir] == '0')
+				if (dir ==  1 && is_enemy_move_valid(data, y, x, dir))
 				{
 					data->map[y][x] = '0';
 					data->map[y][x + dir] = 'M';
 					x+=2;
 				}
-				else if (dir == -1 && data->map[y][x + dir] == '0')
+				else if (dir == -1 && is_enemy_move_valid(data, y, x, dir))
 				{
 					data->map[y][x] = '0';
 					data->map[y][x + dir] = 'M';
@@ -44,12 +46,26 @@ void move_enemy(t_data *data)
 		y++;
 	}
 }
+
+int is_enemy_move_valid(t_data *data, int y, int x, int dir)
+{
+	if (data->map[y][x + dir] == '0')
+		return (1);
+	else if (data->map[y][x + dir] == 'P')
+	{
+		ft_printf("you LOST\n");
+		exit_game(data);
+	}
+	return (0);
+}
+
 int	rendering_(t_data *data)
 {
 	static int dellay;
-
-	if (++dellay % 100 == 0)
+		if (++dellay %100 == 0)
+	{
 		move_enemy(data);
+	}
 	render_images_(data);
 	display_moves_nbr_(data);
 	return (0);

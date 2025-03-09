@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:32:37 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/08 03:34:19 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 01:18:56 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 void	ren_enemy_(t_data *data, int x, int y)
 {
 	static int	fire_index;
+	static int	dellay;
 
 	if (fire_index == 5)
 		fire_index = 0;
 	if (data->map[y][x] == 'M')
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 			data->enemy[fire_index], SCALE * x, SCALE * y);
-	fire_index++;
+	if (++dellay % 10000 == 0)
+		fire_index++;
 }
 
 void	ren_floor_(t_data *data, int x, int y)
@@ -47,14 +49,9 @@ void	ren_exit_(t_data *data, int x, int y)
 
 void	ren_player_(t_data *data, int x, int y)
 {
-	static int	p_index;
-
-	if (p_index == 5)
-		p_index = 0;
 	if (data->map[y][x] == 'P')
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
-			data->player[p_index], SCALE * x, SCALE * y);
-	p_index++;
+			data->player, SCALE * x, SCALE * y);
 }
 
 void	ren_coin_(t_data *data, int x, int y)

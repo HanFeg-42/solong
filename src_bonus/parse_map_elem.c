@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:26:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 23:20:18 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 02:12:38 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,29 +106,29 @@ void	is_collectible_valid_(t_data *data)
 		clean_and_exit(data->map, "No coins detected\n");
 }
 
-void	is_enemy_valid_(t_data *data)
-{
-	int	x;
-	int	y;
-	int	check;
+// void	is_enemy_valid_(t_data *data)
+// {
+// 	int	x;
+// 	int	y;
+// 	int	check;
 
-	check = true;
-	data->enemy_count = 0;
-	y = 0;
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == 'M')
-			{
-				check = false;
-				data->enemy_count++;
-			}
-			x++;
-		}
-		y++;
-	}
-	if (check)
-		clean_and_exit(data->map, "No enemy detected\n");
-}
+// 	check = true;
+// 	data->enemy_count = 0;
+// 	y = 0;
+// 	while (data->map[y])
+// 	{
+// 		x = 0;
+// 		while (data->map[y][x])
+// 		{
+// 			if (data->map[y][x] == 'M')
+// 			{
+// 				check = false;
+// 				data->enemy_count++;
+// 			}
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	if (check)
+// 		clean_and_exit(data->map, "No enemy detected\n");
+// }
