@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:32:37 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/09 01:18:56 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:08:30 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ren_enemy_(t_data *data, int x, int y)
 	if (data->map[y][x] == 'M')
 		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win,
 			data->enemy[fire_index], SCALE * x, SCALE * y);
-	if (++dellay % 10000 == 0)
+	if (++dellay % 20000 == 0)
 		fire_index++;
 }
 
