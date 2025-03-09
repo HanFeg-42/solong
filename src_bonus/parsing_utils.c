@@ -60,7 +60,7 @@ void	not_rectang(t_data *data, char *line)
 	free(line);
 	free(data->join);
 	get_next_line(data->fd, 1);
-	throw_error("it is not rectangular!\n");
+	throw_error("The map is not rectangular!\n");
 }
 
 void	is_line_valid_(t_data *data, int index, int size)
@@ -72,11 +72,11 @@ void	is_line_valid_(t_data *data, int index, int size)
 	i = 0;
 	if (size != (int)ft_strlen(data->map[index])
 		|| data->map[index][0] != '1' || data->map[index][size - 1] != '1')
-		clean_and_exit(data->map, "unvalid wall\n");
+		clean_and_exit(data->map, "Unvalid Wall\n");
 	while (data->map[index][i + 1])
 	{
 		if (!ft_strchr(emoji, data->map[index][i]))
-			clean_and_exit(data->map, "a character is not in {10PCEM}\n");
+			clean_and_exit(data->map, "Unvalid element in the map\n");
 		i++;
 	}
 }
@@ -91,7 +91,7 @@ void	is_line_wall_(char *line, t_data *data)
 		if (line[i + 1] == '\0' && line [i] == '\n')
 			break ;
 		if (line[i] != '1')
-			clean_and_exit(data->map, "unvalid map!\n");
+			clean_and_exit(data->map, "Unvalid map!\n");
 		i++;
 	}
 }

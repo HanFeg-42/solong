@@ -20,7 +20,7 @@ char	*is_map_valid(char *map, t_solong *var)
 	check_map_ext(map);
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		throw_error("failed to open");
+		throw_error("Can not open the map\n");
 	get_map(fd, &data);
 	check_map(&data);
 	var->map = copy_map(data);
@@ -28,7 +28,7 @@ char	*is_map_valid(char *map, t_solong *var)
 	data.count++;
 	init_player_position(&data);
 	if (!check_path(data.m, data.x, data.y, &data.count))
-		return (clean_up(data.m), "unvalid path\n");
+		return (clean_up(data.m), "Unvalid Path\n");
 	return (clean_up(data.m), NULL);
 }
 
@@ -52,7 +52,7 @@ void	get_map(int fd, t_map_data *data)
 		{
 			(free(line), free(join));
 			get_next_line(fd, 1);
-			throw_error("it is not rectangular!\n");
+			throw_error("Map is not rectangular!\n");
 		}
 	}
 	free(line);

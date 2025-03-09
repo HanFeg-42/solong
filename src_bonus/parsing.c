@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/09 02:12:19 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 17:58:59 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ void	is_map_valid_(t_data *data)
 	is_player_valid_(data);
 	is_collectible_valid_(data);
 	is_exit_valid_(data);
-	// is_enemy_valid_(data);
 	tmp_map = copy_map_(*data);
 	init_player_exit_pos_(data);
 	count = data->coins_count + 1;
 	if (!check_path_(tmp_map, data->px, data->py, &count))
 	{
 		clean_up(tmp_map);
-		clean_and_exit(data->map, "unvalid path\n");
+		clean_and_exit(data->map, "Unvalid Path\n");
 	}
 	clean_up(tmp_map);
 }
@@ -56,7 +55,7 @@ void	open_map_(t_data *data)
 	check_map_ext_(data->map_name);
 	data->fd = open(data->map_name, O_RDONLY);
 	if (data->fd < 0)
-		throw_error("failed to open");
+		throw_error("Can't open the map\n");
 }
 
 void	get_map_(t_data *data)
@@ -93,6 +92,5 @@ void	check_map_ext_(char *map)
 	size = ft_strlen(map);
 	ext = ft_strnstr(map, ".ber", size);
 	if (!(ext && ft_strlen(ext) == 4 && size > 4))
-		throw_error("unvalid map extension!\n");
+		throw_error("Unvalid map extension!\n");
 }
-//enemy

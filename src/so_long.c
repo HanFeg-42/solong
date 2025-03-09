@@ -80,11 +80,11 @@ int	main(int ac, char **av)
 	t_mlx_data	data;
 
 	if (ac != 2)
-		throw_error("unvalid argument!\n");
+		throw_error("Unvalid Arguments!\n");
 	var.err = is_map_valid(av[1], &var);
 	if (var.err)
 		throw_error(var.err);
-	printf("\033[32m map is valid congrats! \033[0m\n");
+	ft_printf("\033[36m--Game Started-- \033[0m\n");
 	initialize_data(&data);
 	data.map = var.map;
 	data.coins = var.coins;

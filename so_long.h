@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/09 02:42:46 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:05:51 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,6 @@ void	check_walls_elemt(t_data *data);
 void	is_player_valid_(t_data *data);
 void	is_exit_valid_(t_data *data);
 void	is_collectible_valid_(t_data *data);
-void	is_enemy_valid_(t_data *data);
 void	clean_and_exit(char **map, char *err);
 void	is_line_wall_(char *line, t_data *data);
 void	check_map_ext_(char *map);
@@ -224,5 +223,7 @@ void	move_player_(char *move, t_data *data);
 void	loading_images_(t_data *data);
 void	so_long_(t_data *data);
 int		is_enemy_move_valid(t_data *data, int y, int x, int dir);
+void	handle_enemy_move(t_data *data, int y, int *x, int *dir);
+void	move_enemy(t_data *data);
 
 #endif

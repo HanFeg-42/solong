@@ -6,66 +6,18 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:40:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/09 01:18:07 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:01:20 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void move_enemy(t_data *data)
-{
-	int x;
-	int y;
-	static int dir = -1;// 1 limn || -1 => lisr
-
-	y = 0;
-	while(data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == 'M')
-			{
-				if (dir ==  1 && is_enemy_move_valid(data, y, x, dir))
-				{
-					data->map[y][x] = '0';
-					data->map[y][x + dir] = 'M';
-					x+=2;
-				}
-				else if (dir == -1 && is_enemy_move_valid(data, y, x, dir))
-				{
-					data->map[y][x] = '0';
-					data->map[y][x + dir] = 'M';
-					x++;
-				}
-				else
-					dir = dir * (-1);
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-int is_enemy_move_valid(t_data *data, int y, int x, int dir)
-{
-	if (data->map[y][x + dir] == '0')
-		return (1);
-	else if (data->map[y][x + dir] == 'P')
-	{
-		ft_printf("you LOST\n");
-		exit_game(data);
-	}
-	return (0);
-}
-
 int	rendering_(t_data *data)
 {
-	static int dellay;
-		if (++dellay %100 == 0)
-	{
+	static int	dellay;
+
+	if (++dellay % 100 == 0)
 		move_enemy(data);
-	}
 	render_images_(data);
 	display_moves_nbr_(data);
 	return (0);
@@ -101,23 +53,22 @@ void	display_moves_nbr_(t_data *data)
 
 	str = NULL;
 	i = 0;
-
 	if (data->old_moves_count != data->moves_count)
 	{
-			while (i < data->width)
-	{
-		mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->floor,
-			i * SCALE, data->height * SCALE);
-		i++;
-	}
+		while (i < data->width)
+		{
+			mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->floor,
+				i * SCALE, data->height * SCALE);
+			i++;
+		}
 		data->old_moves_count = data->moves_count;
-	str = ft_itoa(data->moves_count);
-	mlx_set_font(data->mlx_ptr, data->mlx_win, "9x15");
-	mlx_string_put(data->mlx_ptr, data->mlx_win, 12,
-		data->height * SCALE + 32, 0x000000, "Number of moves :");
-	mlx_string_put(data->mlx_ptr, data->mlx_win, SCALE * 3 - 20,
-		data->height * SCALE + 32, 0x000000, str);
-	free(str);
+		str = ft_itoa(data->moves_count);
+		mlx_set_font(data->mlx_ptr, data->mlx_win, "9x15");
+		mlx_string_put(data->mlx_ptr, data->mlx_win, 12,
+			data->height * SCALE + 32, 0x000000, "Number of moves :");
+		mlx_string_put(data->mlx_ptr, data->mlx_win, SCALE * 3 - 20,
+			data->height * SCALE + 32, 0x000000, str);
+		free(str);
 	}
 }
 

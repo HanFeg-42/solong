@@ -45,7 +45,7 @@ void	is_player_valid_(t_data *data)
 			if (data->map[y][x] == 'P' && check)
 				check = false;
 			else if (data->map[y][x] == 'P' && !check)
-				clean_and_exit(data->map, "player duplicated\n");
+				clean_and_exit(data->map, "Player duplicated\n");
 			x++;
 		}
 		y++;
@@ -70,7 +70,7 @@ void	is_exit_valid_(t_data *data)
 			if (data->map[y][x] == 'E' && check)
 				check = false;
 			else if (data->map[y][x] == 'E' && !check)
-				clean_and_exit(data->map, "exit duplicated\n");
+				clean_and_exit(data->map, "Exit duplicated\n");
 			x++;
 		}
 		y++;
@@ -105,30 +105,3 @@ void	is_collectible_valid_(t_data *data)
 	if (check)
 		clean_and_exit(data->map, "No coins detected\n");
 }
-
-// void	is_enemy_valid_(t_data *data)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	check;
-
-// 	check = true;
-// 	data->enemy_count = 0;
-// 	y = 0;
-// 	while (data->map[y])
-// 	{
-// 		x = 0;
-// 		while (data->map[y][x])
-// 		{
-// 			if (data->map[y][x] == 'M')
-// 			{
-// 				check = false;
-// 				data->enemy_count++;
-// 			}
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	if (check)
-// 		clean_and_exit(data->map, "No enemy detected\n");
-// }

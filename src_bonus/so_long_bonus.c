@@ -17,10 +17,10 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (ac != 2)
-		return (ft_putstr_fd("Unvalid arguments!", 2), 1);
+		return (ft_putstr_fd("Unvalid Arguments!", 2), 1);
 	init0_data(av[1], &data);
 	is_map_valid_(&data);
-	printf("\033[32m map is valid congrats! \033[0m\n");
+	ft_printf("\033[36m--Game Started-- \033[0m\n");
 	so_long_(&data);
 	clean_up(data.map);
 	return (0);

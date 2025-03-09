@@ -16,7 +16,7 @@ int	close_window(t_mlx_data *data)
 {
 	int	i;
 
-	ft_printf("you clicked red cross\n");
+	ft_printf("you clicked Red Cross\n");
 	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	clean_up(data->map);
 	i = 0;
@@ -59,7 +59,7 @@ void	game_over(t_mlx_data *data)
 {
 	int	i;
 
-	ft_printf("you WIN\n");
+	ft_printf("\033[32mCongratulations! You WON the Game\033[0m\n");
 	data->map[data->py][data->px] = '0';
 	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	i = 0;

@@ -73,13 +73,9 @@ void	initialize_data(t_mlx_data *data)
 
 void	display_moves_nbr(t_mlx_data *data)
 {
-	char	*str;
-
-	str = NULL;
 	if (data->old_count != data->count)
 	{
 		ft_printf("Number of moves: %d\n", data->count);
 		data->old_count = data->count;
 	}
-
 }

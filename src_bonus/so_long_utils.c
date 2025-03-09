@@ -37,12 +37,12 @@ int	check_exit_(int y, int x, t_data *data)
 		return (0);
 	if (data->ex == x && data->ey == y && !data->coins_count)
 	{
-		ft_printf("you WIN\n");
+		ft_printf("\033[32mCongratulations! You WON the Game\033[0m\n");
 		exit_game(data);
 	}
 	else if (data->map[y][x] == 'M')
 	{
-		ft_printf("you LOST\n");
+		ft_printf("\033[31mGame Over! You LOST\033[0m\n");
 		exit_game(data);
 	}
 	return (1);
@@ -66,7 +66,7 @@ int	is_move_valid_(char *move, t_data *data)
 
 int	close_window_(t_data *data)
 {
-	ft_printf("you clicked red cross\n");
+	ft_printf("you clicked Red Cross\n");
 	exit_game(data);
 	return (1);
 }

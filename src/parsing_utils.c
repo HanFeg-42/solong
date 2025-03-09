@@ -24,7 +24,7 @@ void	is_line_wall(char *line, t_map_data *data)
 		if (line[i] != '1')
 		{
 			clean_up(data->m);
-			throw_error("unvalid map : check top and bottom walls\n");
+			throw_error("Unvalid Wall\n");
 		}
 		i++;
 	}

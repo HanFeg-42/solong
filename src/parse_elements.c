@@ -23,14 +23,14 @@ void	is_line_valid(t_map_data *data, int index, int size)
 		|| data->m[index][0] != '1' || data->m[index][size - 1] != '1')
 	{
 		clean_up(data->m);
-		throw_error("unvalid wall\n");
+		throw_error("Unvalid Wall\n");
 	}
 	while (data->m[index][i + 1])
 	{
 		if (!ft_strchr(emoji, data->m[index][i]))
 		{
 			clean_up(data->m);
-			throw_error("a character is not in {10PCE}\n");
+			throw_error("Unvalid element in the map\n");
 		}
 		i++;
 	}
@@ -71,7 +71,7 @@ void	is_player_valid(t_map_data *data)
 			else if (data->m[y][x] == 'P' && !check)
 			{
 				clean_up(data->m);
-				throw_error("player duplicated\n");
+				throw_error("Player duplicated\n");
 			}
 			x++;
 		}
@@ -99,7 +99,7 @@ void	is_exit_valid(t_map_data *data)
 			else if (data->m[y][x] == 'E' && !check)
 			{
 				clean_up(data->m);
-				throw_error("exit duplicated\n");
+				throw_error("Exit duplicated\n");
 			}
 			x++;
 		}
@@ -133,5 +133,5 @@ void	is_collectible_valid(t_map_data *data)
 		y++;
 	}
 	if (check)
-		(clean_up(data->m), throw_error("No coins detected\n"));
+		(clean_up(data->m), throw_error("No coin detected\n"));
 }
