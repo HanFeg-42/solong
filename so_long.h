@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/09 18:05:51 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:05:17 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@
 # define ARROW_D 65364
 # define ARROW_R 65363
 # define ARROW_L 65361
-# define RANDOM 999999
 
 //struct
 typedef struct s_solong
@@ -67,16 +66,6 @@ typedef struct s_map_data
 	int		x;
 	int		y;
 }				t_map_data;
-
-typedef struct s_map
-{
-	char	**m;
-	int		count;
-	int		width;
-	int		height;
-	int		x;
-	int		y;
-}				t_map;
 
 typedef struct s_mlx_data
 {
@@ -225,5 +214,6 @@ void	so_long_(t_data *data);
 int		is_enemy_move_valid(t_data *data, int y, int x, int dir);
 void	handle_enemy_move(t_data *data, int y, int *x, int *dir);
 void	move_enemy(t_data *data);
+void	protect_images_(t_data *data);
 
 #endif

@@ -6,11 +6,19 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:26:12 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/09 02:40:34 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:28:59 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+/* TO DO */
+//.ber.ber 
+// dossier : .ber ===============================> done
+// map khawya ===================================> done
+//  valgrind ./so_long a.ber + map khawya =======> done
+// protect imgs =================================> done
+//  so_long/so_long so_long/maps/map1.ber =======> done
+// get_next_line --TIMEOUT--  
 
 int	main(int ac, char **av)
 {
@@ -55,6 +63,19 @@ void	loading_images_(t_data *data)
 	data->enemy[2] = mlx_xpm_file_to_image(data->mlx_ptr, M3_PATH, &w, &h);
 	data->enemy[3] = mlx_xpm_file_to_image(data->mlx_ptr, M4_PATH, &w, &h);
 	data->enemy[4] = mlx_xpm_file_to_image(data->mlx_ptr, M5_PATH, &w, &h);
+	protect_images_(data);
+}
+ 
+void	protect_images_(t_data *data)
+{
+	if (!data->player || !data->wall || !data->floor || !data->exit
+		|| !data->coin[0] || !data->coin[1] || !data->coin[2] || !data->coin[3]
+		|| !data->coin[4] || !data->enemy[0] || !data->enemy[1]
+		|| !data->enemy[2] || !data->enemy[3] || !data->enemy[4])
+	{
+		ft_printf("Can't load images!\n");
+		exit_game(data);
+	}
 }
 
 void	init0_data(char *arg, t_data *data)

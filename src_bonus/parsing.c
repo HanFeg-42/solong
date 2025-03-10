@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/09 17:58:59 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:25:59 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	get_map_(t_data *data)
 	char	*tmp;
 
 	line = get_next_line(data->fd, 0);
+	if (!line)
+		throw_error("Unvalid map!\n");	
 	data->width = ft_strlen(line);
 	data->join = ft_strdup("");
 	while (line)
@@ -88,9 +90,22 @@ void	check_map_ext_(char *map)
 {
 	char	*ext;
 	int		size;
+	char	*filename;
 
-	size = ft_strlen(map);
-	ext = ft_strnstr(map, ".ber", size);
-	if (!(ext && ft_strlen(ext) == 4 && size > 4))
-		throw_error("Unvalid map extension!\n");
+	filename = ft_strrchr(map, '/');
+	if (filename)
+	{
+		filename++;
+		size = ft_strlen(filename);
+		ext = ft_strnstr(filename, ".ber", size);
+		if (!(ext && ft_strlen(ext) == 4 && size > 4))
+			throw_error("Unvalid map name!\n");
+	}
+	else
+	{
+		size = ft_strlen(map);
+		ext = ft_strnstr(map, ".ber", size);
+		if (!(ext && ft_strlen(ext) == 4 && size > 4))
+			throw_error("Unvalid map name!\n");
+	}
 }

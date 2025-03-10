@@ -54,14 +54,16 @@ $(NAME_B): $(OBJ_B) $(HEADER)
 
 clean:
 	@$(MAKE) $(CLEAN) -s -C $(LIBFT_D)
+	@$(MAKE) $(CLEAN) -s -C $(PRINTF_D)
 	@$(RM) $(OBJ) $(OBJ_B)
 
 fclean: clean
 	@$(MAKE) $(FCLEAN) -s -C $(LIBFT_D)
+	@$(MAKE) $(FCLEAN) -s -C $(PRINTF_D)
 	@$(RM) $(NAME) $(NAME_B)
 
 re: fclean all
 
 .PHONEY: all clean fclean re bonus
 
-.SECONDARY:
+.SECONDARY: $(OBJ) $(OBJ_B)

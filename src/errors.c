@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 09:30:14 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 23:26:52 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:04:54 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,26 @@ void	destroy_images(t_data *data)
 {
 	int	i;
 
-	mlx_destroy_image(data->mlx_ptr, data->player);
-	mlx_destroy_image(data->mlx_ptr, data->exit);
-	mlx_destroy_image(data->mlx_ptr, data->floor);
-	mlx_destroy_image(data->mlx_ptr, data->wall);
+	if (data->player)
+		mlx_destroy_image(data->mlx_ptr, data->player);
+	if (data->exit)
+		mlx_destroy_image(data->mlx_ptr, data->exit);
+	if (data->floor)
+		mlx_destroy_image(data->mlx_ptr, data->floor);
+	if (data->wall)
+		mlx_destroy_image(data->mlx_ptr, data->wall);
 	i = 0;
 	while (i < 5)
-		mlx_destroy_image(data->mlx_ptr, data->coin[i++]);
+	{
+		if (data->coin[i])
+			mlx_destroy_image(data->mlx_ptr, data->coin[i]);
+		i++;
+	}
 	i = 0;
 	while (i < 5)
-		mlx_destroy_image(data->mlx_ptr, data->enemy[i++]);
+	{
+		if (data->enemy[i])
+			mlx_destroy_image(data->mlx_ptr, data->enemy[i]);
+		i++;	
+	}
 }

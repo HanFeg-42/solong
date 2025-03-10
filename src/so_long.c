@@ -6,11 +6,18 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/09 02:09:38 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:30:18 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+//.ber.ber
+// dossier : .ber
+// map khawya
+//  valgrind ./so_long a.ber + map khawya
+// protect imgs
+//  so_long/so_long so_long/maps/map1.ber 
 
 void	so_long(t_mlx_data *data)
 {
