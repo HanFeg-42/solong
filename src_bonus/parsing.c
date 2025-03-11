@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/10 18:25:59 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 00:51:08 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	get_map_(t_data *data)
 
 	line = get_next_line(data->fd, 0);
 	if (!line)
-		throw_error("Unvalid map!\n");	
+		throw_error("Unvalid map!\n");
 	data->width = ft_strlen(line);
 	data->join = ft_strdup("");
 	while (line)
@@ -97,14 +97,14 @@ void	check_map_ext_(char *map)
 	{
 		filename++;
 		size = ft_strlen(filename);
-		ext = ft_strnstr(filename, ".ber", size);
+		ext = ft_strrstr(filename, ".ber");
 		if (!(ext && ft_strlen(ext) == 4 && size > 4))
 			throw_error("Unvalid map name!\n");
 	}
 	else
 	{
 		size = ft_strlen(map);
-		ext = ft_strnstr(map, ".ber", size);
+		ext = ft_strrstr(map, ".ber");
 		if (!(ext && ft_strlen(ext) == 4 && size > 4))
 			throw_error("Unvalid map name!\n");
 	}

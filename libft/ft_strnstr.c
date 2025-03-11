@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 14:08:05 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/09 15:41:59 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 00:44:28 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,25 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 		i++;
 	}
 	return (NULL);
+}
+
+char	*ft_strrstr(char *str, char *to_find)
+{
+	int len;
+	char *ret;
+	char *tmp;
+
+	ret = NULL;
+	tmp = str;
+	len = ft_strlen(to_find);
+	while (tmp)
+	{
+		tmp = ft_strnstr(tmp, to_find, ft_strlen(tmp));
+		if (tmp)
+		{
+			ret = tmp;
+			tmp = tmp + len;
+		}
+	}
+	return (ret);
 }

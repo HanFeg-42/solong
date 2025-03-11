@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:26:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/09 02:12:38 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 01:04:38 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 void	check_walls_elemt(t_data *data)
 {
 	int		i;
-	size_t	size;
+	// size_t	size;
 
-	size = ft_strlen(data->map[0]);
+	// size = ft_strlen(data->map[0]);
 	is_line_wall_(data->map[0], data);
 	i = 1;
 	while (data->map[i])
 	{
-		is_line_valid_(data, i, size);
+		is_line_valid_(data, i, data->width);
 		i++;
 	}
 	data->height = i;
 	is_line_wall_(data->map[i - 1], data);
+	if (data->width > MAX_WIDTH || data->height > MAX_HEIGHT)
+		clean_and_exit(data->map, "Unvalid map size!\n");
 }
 
 void	is_player_valid_(t_data *data)

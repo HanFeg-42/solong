@@ -6,19 +6,19 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:26:12 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/10 18:28:59 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 00:51:41 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 /* TO DO */
-//.ber.ber 
+//.ber.ber ======================================> done
 // dossier : .ber ===============================> done
 // map khawya ===================================> done
 //  valgrind ./so_long a.ber + map khawya =======> done
 // protect imgs =================================> done
 //  so_long/so_long so_long/maps/map1.ber =======> done
-// get_next_line --TIMEOUT--  
+// get_next_line --TIMEOUT--
 
 int	main(int ac, char **av)
 {

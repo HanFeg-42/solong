@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/10 18:05:17 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 01:02:51 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdbool.h>
 
 # define BUFFER_SIZE 1000000
+# define MAX_WIDTH 30 //linux = 30 | imac = x
+# define MAX_HEIGHT 15 //linux = 15 | imac = y
 # define SCALE 64
 # define PATH_WALL "textures/wall1.xpm"
 # define PATH_FLOOR "textures/floor1.xpm"
