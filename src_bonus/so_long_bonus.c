@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:26:12 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/11 01:47:46 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 03:11:57 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (ac != 2)
-		return (ft_putstr_fd("Unvalid Arguments!", 2), 1);
+		return (ft_putstr_fd("Unvalid Arguments!\n", 2), 1);
 	init0_data(av[1], &data);
 	is_map_valid_(&data);
 	ft_printf("\033[36m--Game Started-- \033[0m\n");

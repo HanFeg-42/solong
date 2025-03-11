@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/11 01:43:17 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 03:16:34 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,18 @@ char	*is_map_valid(char *map, t_solong *var)
 	if (fd < 0)
 		throw_error("Can not open the map\n");
 	get_map(fd, &data);
+	if (!data.m || !data.m[0])
+	{
+		clean_up(data.m);
+		throw_error("Empty Map!\n");
+	}
 	check_map(&data);
 	var->map = copy_map(data);
 	var->coins = data.count;
 	data.count++;
 	init_player_position(&data);
 	if (!check_path(data.m, data.x, data.y, &data.count))
-		return (clean_up(data.m), "Unvalid Path\n");
+		return (clean_up(data.m), clean_up(var->map), "Unvalid Path\n");
 	return (clean_up(data.m), NULL);
 }
 

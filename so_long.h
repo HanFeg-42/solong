@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:01:30 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/11 01:33:55 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 02:39:02 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <X11/keysym.h>
 # include <stdbool.h>
 
-# define BUFFER_SIZE 1000000
+# define BUFFER_SIZE 10
 # define MAX_WIDTH 30 //linux = 30 | imac = x
 # define MAX_HEIGHT 15 //linux = 15 | imac = y
 # define SCALE 64

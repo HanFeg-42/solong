@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:44:47 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 01:58:26 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 03:12:48 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	move_player(char *move, t_mlx_data *data)
 {
+	data->old_count = data->count;
+	++data->count;
 	if (is_move_valid(move, data))
 	{
-		data->old_count = data->count;
-		++data->count;
 		if (!ft_strncmp(move, "up", 2))
 		{
 			check_exit(move, data);

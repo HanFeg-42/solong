@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:44:47 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/09 02:58:39 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 03:12:34 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	move_player_(char *move, t_data *data)
 {
+	data->old_moves_count = data->moves_count;
+	++data->moves_count;
 	if (is_move_valid_(move, data))
 	{
-		data->old_moves_count = data->moves_count;
-		++data->moves_count;
 		if (!ft_strncmp(move, "up", 2))
 		{
 			check_exit_(data->py - 1, data->px, data);
