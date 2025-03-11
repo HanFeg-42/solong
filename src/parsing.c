@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:00:55 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/07 23:26:01 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 01:43:17 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	get_map(int fd, t_map_data *data)
 	size_t	size;
 
 	line = get_next_line(fd, 0);
+	if (!line)
+		throw_error("Empty Map!\n");
 	size = ft_strlen(line);
 	join = ft_strdup("");
 	while (line)
@@ -55,9 +57,8 @@ void	get_map(int fd, t_map_data *data)
 			throw_error("Map is not rectangular!\n");
 		}
 	}
-	free(line);
 	data->m = ft_split(join, '\n');
-	free(join);
+	(free(line), free(join));
 }
 
 int	check_path(char **map_data, int x, int y, int *count)
@@ -88,9 +89,22 @@ void	check_map_ext(char *map)
 {
 	char	*ext;
 	int		size;
+	char	*filename;
 
-	size = ft_strlen(map);
-	ext = ft_strnstr(map, ".ber", size);
-	if (!(ext && ft_strlen(ext) == 4 && size > 4))
-		throw_error("unvalid map extension!\n");
+	filename = ft_strrchr(map, '/');
+	if (filename)
+	{
+		filename++;
+		size = ft_strlen(filename);
+		ext = ft_strrstr(filename, ".ber");
+		if (!(ext && ft_strlen(ext) == 4 && size > 4))
+			throw_error("Unvalid map name!\n");
+	}
+	else
+	{
+		size = ft_strlen(map);
+		ext = ft_strrstr(map, ".ber");
+		if (!(ext && ft_strlen(ext) == 4 && size > 4))
+			throw_error("Unvalid map name!\n");
+	}
 }

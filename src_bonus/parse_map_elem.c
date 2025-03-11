@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:26:18 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/11 01:04:38 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 01:21:48 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	check_walls_elemt(t_data *data)
 {
 	int		i;
-	// size_t	size;
 
-	// size = ft_strlen(data->map[0]);
 	is_line_wall_(data->map[0], data);
 	i = 1;
 	while (data->map[i])

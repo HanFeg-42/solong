@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 14:08:05 by marvin            #+#    #+#             */
-/*   Updated: 2025/03/11 00:44:28 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 01:46:17 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 
 char	*ft_strrstr(char *str, char *to_find)
 {
-	int len;
-	char *ret;
-	char *tmp;
+	int		len;
+	char	*ret;
+	char	*tmp;
 
 	ret = NULL;
 	tmp = str;

@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 09:30:14 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/10 18:04:54 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 01:15:35 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void	destroy_images(t_data *data)
 	{
 		if (data->enemy[i])
 			mlx_destroy_image(data->mlx_ptr, data->enemy[i]);
-		i++;	
+		i++;
 	}
 }

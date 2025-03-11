@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:26:12 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/11 00:51:41 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 01:47:46 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	loading_images_(t_data *data)
 	data->enemy[4] = mlx_xpm_file_to_image(data->mlx_ptr, M5_PATH, &w, &h);
 	protect_images_(data);
 }
- 
+
 void	protect_images_(t_data *data)
 {
 	if (!data->player || !data->wall || !data->floor || !data->exit
@@ -89,5 +89,5 @@ void	init0_data(char *arg, t_data *data)
 //TODO : 1 - bonus parsing -----------------------> DONE
 //TODO : 2 - render the game ---------------------> DONE
 //TODO : 3 - display moves on window -------------> DONE
-//TODO : 4 - coin animation ---------------------->
+//TODO : 4 - coin animation ----------------------> DONE
 //TODO : 5 - handle enemy behavior ---------------> DONE

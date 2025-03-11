@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/10 17:30:18 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/11 01:47:13 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 // map khawya
 //  valgrind ./so_long a.ber + map khawya
 // protect imgs
-//  so_long/so_long so_long/maps/map1.ber 
+//  so_long/so_long so_long/maps/map1.ber
 
 void	so_long(t_mlx_data *data)
 {
 	data->height = get_map_height(data->map);
 	data->width = get_map_width(data->map);
+	if (data->width > MAX_WIDTH || data->height > MAX_HEIGHT)
+		(clean_up(data->map), throw_error("Unvalid map size!\n"));
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		exit(1);
@@ -43,13 +45,30 @@ void	so_long(t_mlx_data *data)
 
 void	loading_images(t_mlx_data *data)
 {
-	int (w), (h);
+	int (w), (h), (i);
 	data->images[0] = mlx_xpm_file_to_image(data->mlx_ptr, PATH_WALL, &w, &h);
 	data->images[1] = mlx_xpm_file_to_image(data->mlx_ptr, PATH_FLOOR, &w, &h);
 	data->images[2] = mlx_xpm_file_to_image(data->mlx_ptr, PATH_PLAYER, &w, &h);
 	data->images[3] = mlx_xpm_file_to_image(data->mlx_ptr, PATH_EXIT, &w, &h);
 	data->images[4] = mlx_xpm_file_to_image(data->mlx_ptr,
 			PATH_COLLECTIBLE, &w, &h);
+	if (!data->images[0] || !data->images[1] || !data->images[2]
+		|| !data->images[3] || !data->images[4])
+	{
+		ft_printf("Can't load images!\n");
+		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
+		clean_up(data->map);
+		i = 0;
+		while (i < 5)
+		{
+			if (data->images[i])
+				mlx_destroy_image(data->mlx_ptr, data->images[i]);
+			i++;
+		}
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+		exit(1);
+	}
 }
 
 int	rendering_to_win(t_mlx_data *data)
