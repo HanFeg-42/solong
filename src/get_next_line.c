@@ -6,13 +6,13 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:39:28 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/12 15:06:03 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/13 20:01:32 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	*ft_strjoin_gnl(char *s1, char *s2)
+char	*ft_strjoin_(char *s1, char *s2)
 {
 	char			*join;
 
@@ -39,7 +39,6 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	free(s1);
 	return (join);
 }
-
 
 void	fill_in_save(int fd, ssize_t *rd, char **save, char **buff)
 {
