@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/05 14:12:09 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/14 01:24:23 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	game_over(t_mlx_data *data)
 {
 	int	i;
 
+	ft_printf("Number of moves: %d\n", data->count);
 	ft_printf("\033[32mCongratulations! You WON the Game\033[0m\n");
-	data->map[data->py][data->px] = '0';
 	mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 	i = 0;
 	while (i < 5)

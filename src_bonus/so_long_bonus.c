@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:26:12 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/11 03:11:57 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/14 01:21:59 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,19 @@ int	main(int ac, char **av)
 void	so_long_(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+	{
+		clean_up(data->map);
+		exit(1);
+	}
 	data->mlx_win = mlx_new_window(data->mlx_ptr, data->width * SCALE,
 			data->height * SCALE + 64, "so_long");
+	if (!data->mlx_win)
+	{
+		clean_up(data->map);
+		free(data->mlx_ptr);
+		exit(1);
+	}
 	loading_images_(data);
 	mlx_hook(data->mlx_win, 17, 0, close_window_, data);
 	mlx_hook(data->mlx_win, 2, (1L << 0), key_press_, data);
@@ -73,7 +84,7 @@ void	protect_images_(t_data *data)
 		|| !data->coin[4] || !data->enemy[0] || !data->enemy[1]
 		|| !data->enemy[2] || !data->enemy[3] || !data->enemy[4])
 	{
-		ft_printf("Can't load images!\n");
+		ft_printf("Error\nCan't load images!\n");
 		exit_game(data);
 	}
 }

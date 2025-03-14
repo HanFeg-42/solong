@@ -6,7 +6,7 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/11 01:47:13 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/14 01:18:24 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,20 @@ void	so_long(t_mlx_data *data)
 {
 	data->height = get_map_height(data->map);
 	data->width = get_map_width(data->map);
-	if (data->width > MAX_WIDTH || data->height > MAX_HEIGHT)
-		(clean_up(data->map), throw_error("Unvalid map size!\n"));
+
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
+	{
+		clean_up(data->map);
 		exit(1);
+	}
 	data->mlx_win = mlx_new_window(data->mlx_ptr, data->width * SCALE,
 			data->height * SCALE, "so_long");
 	if (!data->mlx_win)
 	{
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
+		clean_up(data->map);
 		exit(1);
 	}
 	loading_images(data);
@@ -55,7 +58,7 @@ void	loading_images(t_mlx_data *data)
 	if (!data->images[0] || !data->images[1] || !data->images[2]
 		|| !data->images[3] || !data->images[4])
 	{
-		ft_printf("Can't load images!\n");
+		ft_printf("Error\nCan't load images!\n");
 		mlx_destroy_window(data->mlx_ptr, data->mlx_win);
 		clean_up(data->map);
 		i = 0;
