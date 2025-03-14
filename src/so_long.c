@@ -6,24 +6,16 @@
 /*   By: hfegrach <hfegrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 08:57:39 by hfegrach          #+#    #+#             */
-/*   Updated: 2025/03/14 01:18:24 by hfegrach         ###   ########.fr       */
+/*   Updated: 2025/03/14 01:51:04 by hfegrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-//.ber.ber
-// dossier : .ber
-// map khawya
-//  valgrind ./so_long a.ber + map khawya
-// protect imgs
-//  so_long/so_long so_long/maps/map1.ber
-
 void	so_long(t_mlx_data *data)
 {
 	data->height = get_map_height(data->map);
 	data->width = get_map_width(data->map);
-
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 	{
